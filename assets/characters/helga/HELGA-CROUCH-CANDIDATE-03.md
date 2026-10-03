@@ -46,6 +46,9 @@ TEST_PROJECT_C / Panel 001 later rejected a new use while REUSABLE = NO:
 
 After the reversal:
 - TEST_PROJECT_D / Panel 001 — accepted new consuming use
+- TEST_PROJECT_E / Panel 002 — accepted new consuming use
+- TEST_PROJECT_F / Panel 011 — accepted new consuming use
+- TEST_PROJECT_G / Panel 004 — accepted new consuming use
 
 These records remain historical production facts and are not rewritten by the current reuse decision.
 
@@ -62,5 +65,11 @@ These records remain historical production facts and are not rewritten by the cu
 - Reversal lifecycle decision: assets/characters/helga/HELGA-CROUCH-CANDIDATE-03_LIFECYCLE_REVERSAL_DECISION.md
 - TEST_PROJECT_D request: correspondence/requests/test_project_d/TESTD-P001-HELGA-REUSE-001.md
 - TEST_PROJECT_D decision: projects/test_project_d/panels/001/decisions/HELGA_REUSE_ASSET_DECISION.md
+- TEST_PROJECT_E request: correspondence/requests/test_project_e/TESTE-P002-HELGA-REUSE-001.md
+- TEST_PROJECT_E decision: projects/test_project_e/panels/002/decisions/HELGA_REUSE_ASSET_DECISION.md
+- TEST_PROJECT_F request: correspondence/requests/test_project_f/TESTF-P011-HELGA-REUSE-001.md
+- TEST_PROJECT_F decision: projects/test_project_f/panels/011/decisions/HELGA_REUSE_ASSET_DECISION.md
+- TEST_PROJECT_G request: correspondence/requests/test_project_g/TESTG-P004-HELGA-REUSE-001.md
+- TEST_PROJECT_G decision: projects/test_project_g/panels/004/decisions/HELGA_REUSE_ASSET_DECISION.md
 
 The actual image is intentionally not stored.
