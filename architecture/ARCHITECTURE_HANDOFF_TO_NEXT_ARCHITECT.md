@@ -244,3 +244,52 @@ The architecture has survived both stopping and restoring new reuse of the same 
 
 Immediate next action:
 Run TEST 7 — MULTIPLE INDEPENDENT CONSUMERS and update this handoff immediately afterward.
+
+
+## 13. Test #6 — REUSE REVERSAL — PASS (2026-10-03)
+
+Test #6 confirmed that the current model handles the lifecycle sequence:
+
+REUSABLE=YES → REUSABLE=NO → REUSABLE=YES
+
+without a new architectural entity.
+
+Observed:
+- the asset record now shows the current state REUSABLE=YES;
+- the previous lifecycle decision remains unchanged;
+- a separate reversal lifecycle decision records the new event;
+- TEST_PROJECT_C remains historically REJECTED_FOR_NEW_USE;
+- TEST_PROJECT_D successfully consumes the asset after restoration;
+- WITCH / Panel 017 and TEST_PROJECT_B / Panel 003 remain unchanged;
+- provenance and Helga character canon remain unchanged.
+
+Newly proven:
+- lifecycle changes can be represented as separate decisions while the asset record carries current state;
+- historical consumer decisions remain historically true after a later reversal;
+- a restored reusable asset can enter a new consumer chain without a new architecture entity.
+
+No richer lifecycle vocabulary, registry, automatic propagation, or governance system was needed.
+
+Still open:
+- authority/governance for lifecycle reversal;
+- readability/discoverability with many lifecycle changes;
+- discoverability with many consumers;
+- supersession;
+- physical binary assets;
+- reconstruction by a new sister from repository alone.
+
+## 14. Next test — Test #7
+
+NEXT MINIMAL EXPERIMENT: MULTIPLE INDEPENDENT CONSUMERS.
+
+Question:
+Does ordinary repository search remain sufficient when one asset has many independent consumers?
+
+Do not add a consumer registry in advance.
+Let the real search scenario determine whether discoverability actually breaks.
+
+The next sister should inspect the existing Test #6 artifacts and then run Test #7 from the smallest real scenario.
+
+## 15. Living-handoff maintenance
+
+The rule is reaffirmed: after every architecture test, test-derived conclusion, or materially important new architectural data from the user or assistant, update this file, even if the architecture itself does not change.
