@@ -173,3 +173,24 @@ while preserving the earlier lifecycle decision and all historical consumers.
 
 ### Next minimal test
 TEST 7 — Multiple independent consumers: determine whether repository search remains adequate when one asset has several consumers. Do not add a consumer registry unless the scenario demonstrates a concrete discoverability failure.
+
+
+## 2026-10-03 — Test 6 full report confirmation
+
+The submitted Test #6 report confirms PASS: the model expresses REUSABLE YES → NO → YES without a new architectural entity.
+
+Key confirmation:
+- current asset record carries the current REUSABLE state;
+- each lifecycle transition can have its own focused decision;
+- the previous NO decision remains historical and is not rewritten;
+- TEST_PROJECT_C remains historically REJECTED_FOR_NEW_USE;
+- TEST_PROJECT_D can become a new consumer after restoration;
+- old consumers, provenance, and character canon remain unchanged.
+
+Newly proven:
+**A later lifecycle reversal does not retroactively invalidate or rewrite an earlier consumer decision.**
+
+No richer lifecycle vocabulary or registry was justified.
+
+Next minimal test:
+**TEST #7 — MULTIPLE INDEPENDENT CONSUMERS**, specifically to stress discoverability with many consumers and determine whether repository search remains sufficient.
