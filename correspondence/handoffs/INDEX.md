@@ -16,6 +16,12 @@
   - Focused production handoff for task WITCH-P017-HELGA-CROUCH-001.
   - Points to the panel state, decision, accepted asset, character state and originating request.
 
+## TEST_PROJECT_B / CROSS-PROJECT
+
+- [TEST_PROJECT_B Panel 003 — Helga reuse, 2026-10-03](cross-project/TESTB_P003_HELGA_REUSE_HANDOFF_2026-10-03.md)
+  - Focused consuming handoff for task TESTB-P003-HELGA-REUSE-001.
+  - Reuses HELGA-CROUCH-CANDIDATE-03 from WITCH without changing originating provenance or Helga canon.
+
 ## Test note
 
 These are deliberately real documents from the Cloud Library plus architecture-test material created in this repository. Handoffs transfer context, provenance, decisions and open state; they do not automatically transfer authority.
