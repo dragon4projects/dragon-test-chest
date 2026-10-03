@@ -7,7 +7,7 @@
 
 ## Test result
 
-**PASS for the tested repository structure and seven consumer scenarios.**
+**PARTIAL — the data model survived the tested seven consumers, but exhaustive repository-search adequacy was not independently demonstrated because the available search interface returned zero results.**
 
 The asset has seven known consumer scenarios:
 
