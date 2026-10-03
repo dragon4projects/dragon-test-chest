@@ -12,6 +12,10 @@
   - Full project continuity handoff.
   - Contains historical/current boundary, production checkpoint, technical discoveries and reopening conditions.
 
+- [WITCH Panel 017 — Helga crouching, 2026-10-03](witch/WITCH_P017_HELGA_CROUCH_HANDOFF_2026-10-03.md)
+  - Focused production handoff for task WITCH-P017-HELGA-CROUCH-001.
+  - Points to the panel state, decision, accepted asset, character state and originating request.
+
 ## Test note
 
-These are deliberately real documents from the Cloud Library. They are not rewritten summaries. The experiment is to see whether repository placement and indexing make them usable to a replacement sister.
+These are deliberately real documents from the Cloud Library plus architecture-test material created in this repository. Handoffs transfer context, provenance, decisions and open state; they do not automatically transfer authority.
