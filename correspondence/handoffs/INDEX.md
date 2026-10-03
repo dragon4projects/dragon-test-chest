@@ -23,8 +23,18 @@
   - Reuses HELGA-CROUCH-CANDIDATE-03 from WITCH without changing originating provenance or Helga canon.
 
 - [HELGA-CROUCH-CANDIDATE-03 — reuse lifecycle, 2026-10-03](cross-project/HELGA_CROUCH_REUSE_LIFECYCLE_HANDOFF_2026-10-03.md)
-  - Focused lifecycle handoff: the asset was reusable and used, but is no longer recommended for new production reuse.
+  - Focused lifecycle handoff: the asset was reusable and used, but was later not recommended for new production reuse.
   - Points to the asset record, lifecycle decision, existing consumers and TEST_PROJECT_C decision.
+
+- [HELGA-CROUCH-CANDIDATE-03 — reuse reversal, 2026-10-03](cross-project/HELGA_CROUCH_REUSE_REVERSAL_HANDOFF_2026-10-03.md)
+  - Focused Test #6 handoff: the asset moved from REUSABLE=NO back to REUSABLE=YES without rewriting the earlier lifecycle decision or historical consumers.
+  - Points to TEST_PROJECT_D as the new consumer after reversal.
+
+## TEST_PROJECT_D
+
+- TEST_PROJECT_D Panel 001 — Helga reuse after lifecycle reversal, 2026-10-03
+  - Task TESTD-P001-HELGA-REUSE-001.
+  - The production-test records are stored under projects/test_project_d/ and correspondence/requests/test_project_d/.
 
 ## Test note
 
