@@ -22,6 +22,10 @@
   - Focused consuming handoff for task TESTB-P003-HELGA-REUSE-001.
   - Reuses HELGA-CROUCH-CANDIDATE-03 from WITCH without changing originating provenance or Helga canon.
 
+- [HELGA-CROUCH-CANDIDATE-03 — reuse lifecycle, 2026-10-03](cross-project/HELGA_CROUCH_REUSE_LIFECYCLE_HANDOFF_2026-10-03.md)
+  - Focused lifecycle handoff: the asset was reusable and used, but is no longer recommended for new production reuse.
+  - Points to the asset record, lifecycle decision, existing consumers and TEST_PROJECT_C decision.
+
 ## Test note
 
 These are deliberately real documents from the Cloud Library plus architecture-test material created in this repository. Handoffs transfer context, provenance, decisions and open state; they do not automatically transfer authority.
