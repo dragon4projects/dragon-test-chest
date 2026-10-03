@@ -293,3 +293,114 @@ The next sister should inspect the existing Test #6 artifacts and then run Test 
 ## 15. Living-handoff maintenance
 
 The rule is reaffirmed: after every architecture test, test-derived conclusion, or materially important new architectural data from the user or assistant, update this file, even if the architecture itself does not change.
+
+## 16. Test #7 — MULTIPLE INDEPENDENT CONSUMERS — PASS (2026-10-03)
+
+Test #7 added three independent consumers of the existing asset HELGA-CROUCH-CANDIDATE-03 without creating duplicate asset records:
+
+- TEST_PROJECT_E / Panel 002 — TESTE-P002-HELGA-REUSE-001
+- TEST_PROJECT_F / Panel 011 — TESTF-P011-HELGA-REUSE-001
+- TEST_PROJECT_G / Panel 004 — TESTG-P004-HELGA-REUSE-001
+
+The complete tested consumer set is now:
+
+1. WITCH / Panel 017 — accepted originating use
+2. TEST_PROJECT_B / Panel 003 — accepted consuming use
+3. TEST_PROJECT_C / Panel 001 — REJECTED_FOR_NEW_USE while REUSABLE=NO
+4. TEST_PROJECT_D / Panel 001 — accepted consuming use after REUSABLE=YES
+5. TEST_PROJECT_E / Panel 002 — accepted consuming use
+6. TEST_PROJECT_F / Panel 011 — accepted consuming use
+7. TEST_PROJECT_G / Panel 004 — accepted consuming use
+
+### OBSERVED FACTS
+
+Each new consumer has the normal local chain:
+
+request → panel state → decision → existing asset
+
+Each decision explicitly identifies HELGA-CROUCH-CANDIDATE-03 and points to the same asset record. No asset record was copied.
+
+The asset record's Related records plus the individual consumer records were sufficient to reconstruct the seven known scenarios.
+
+The GitHub connector search operation available during this test returned no matches even for broad repository terms (HELGA, Panel, REUSABLE, asset) and therefore could not serve as a reliable empirical full-repository search interface for this test. This is an observation about the search interface, not proof of a repository-model failure.
+
+### SEARCH TESTS
+
+Attempted repository search terms included:
+- HELGA-CROUCH-CANDIDATE-03
+- HELGA
+- Panel
+- REUSABLE
+- asset
+- TEST_PROJECT_B
+- TEST_PROJECT_C
+- TEST_PROJECT_D
+- WITCH Panel 017
+
+The search interface returned zero results in these attempts. The repository structure was therefore traversed through the asset record's explicit Related records and known consumer paths.
+
+### DISCOVERABILITY
+
+Easy:
+- asset → origin;
+- asset → lifecycle decisions;
+- asset → known consumer records already listed in the asset record;
+- consumer → decision → asset;
+- consumer decision → origin.
+
+Less easy:
+- discovering a consumer without already knowing the asset record or consumer path;
+- distinguishing a true consumer record from an incidental mention if relying only on broad text search;
+- using the available connector search as an exhaustive repository index, because it returned no results during the test.
+
+The test did not establish that repository data itself loses the consumer relationship.
+
+### INFERENCE
+
+For the tested seven-consumer structure, the durable records can represent independent consumers without a consumer registry or duplicate asset records.
+
+The strongest current reverse-navigation mechanism is the asset record's explicit Related records combined with consumer-local links back to the asset.
+
+### HYPOTHESES
+
+If the number of consumers grows substantially, manually maintained Related records may become harder to keep complete.
+
+A larger corpus may also make incidental mentions harder to distinguish from actual consumer decisions.
+
+Neither issue is proven as an architectural failure by Test #7.
+
+### ACCEPTED ARCHITECTURE AFTER TEST #7
+
+For the tested scale and structure:
+
+Repository records are sufficient to represent multiple independent consumers of one asset without a global consumer registry.
+
+This is not a universal claim that a registry will never be useful.
+
+### WHAT WE DID NOT NEED
+
+- consumer registry;
+- global asset registry;
+- usage table;
+- graph database;
+- automatic index;
+- API;
+- synchronization;
+- new asset records for each consumer;
+- richer lifecycle vocabulary.
+
+### WHAT REMAINS OPEN
+
+- replacement / supersession;
+- physical binary asset;
+- reconstruction by a new sister from repository alone;
+- whether manual Related-record maintenance remains reliable at much larger consumer counts;
+- governance/authority for lifecycle recommendations.
+
+### Test #7 focused handoff
+
+correspondence/handoffs/cross-project/HELGA_CROUCH_MULTIPLE_CONSUMERS_TEST7_HANDOFF_2026-10-03.md
+
+### Immediate next action
+
+Run TEST 8 — REPLACEMENT / SUPERSESSION.
