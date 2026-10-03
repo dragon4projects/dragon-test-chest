@@ -105,3 +105,12 @@ historical reusable state
 - governance framework beyond what the test requires.
 
 These remain hypotheses/open questions until a concrete test breaks the current model.
+
+
+## 2026-10-03 — Test 5 full report confirmation
+
+The full report confirms the minimal solution: explicit current `REUSABLE` semantics, a focused asset lifecycle decision, unchanged historical consumers, local decisions for new consumers, and no global registry. The test also confirms the distinction between historical reuse and current recommendation.
+
+**New open question:** ownership of later asset-level reuse recommendations. This remains an observed architectural question, not a reason to add governance machinery yet.
+
+**Next proposed test:** REUSE REVERSAL.
