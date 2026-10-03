@@ -297,3 +297,34 @@ Update a GitHub issue, including title/body, state, labels, assignees, or milest
 
 Update PR metadata, base branch, or open/closed state.
 
+
+
+---
+
+# Architecture Lab
+
+This repository is a **test laboratory** for the storage/documentation architecture planned for the production repositories.
+
+## Current experiment
+
+First real material imported from the Cloud Library:
+
+- `correspondence/handoffs/sama/` — SAMA continuity handoff
+- `correspondence/handoffs/witch/` — WITCH continuity handoff
+- `knowledge_base/generators/z-image-turbo/1.0/research/` — Z-Image Control/ControlNet research
+
+The source documents were copied without rewriting their substantive content.
+
+## Working rule
+
+The lab tests whether a new sister can reconstruct project state and technical knowledge from repository material alone.
+
+Nothing here is yet the final production architecture.
+
+## ChatGPT attachment rule
+
+Repository files are repository assets, not ChatGPT conversation attachments.
+
+Do not bulk-import repository images into ChatGPT merely to inspect or reference them. A repository image is not automatically visual input to the current chat.
+
+Prefer text-first repository references whenever visual inspection is not actually required.
