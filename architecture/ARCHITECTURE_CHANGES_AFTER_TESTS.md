@@ -114,3 +114,62 @@ The full report confirms the minimal solution: explicit current `REUSABLE` seman
 **New open question:** ownership of later asset-level reuse recommendations. This remains an observed architectural question, not a reason to add governance machinery yet.
 
 **Next proposed test:** REUSE REVERSAL.
+
+
+## 2026-10-03 — Test 6 — Asset lifecycle / reuse reversal
+
+### Observed
+HELGA-CROUCH-CANDIDATE-03 was already recorded as REUSABLE = NO after Test #5. The test changed the current asset record to REUSABLE = YES and defined YES as eligible to be considered for a new production consuming task.
+
+The previous lifecycle decision was not rewritten. A separate reversal lifecycle decision was created.
+
+TEST_PROJECT_D / Panel 001 then recorded a normal new consuming scenario:
+request → panel state → decision.
+
+### Inference
+The current boolean REUSABLE is sufficient for the tested reversal. A separate lifecycle decision preserves the historical NO event while the asset record exposes the current YES state.
+
+Historical consumer decisions do not need retroactive mutation:
+- WITCH / Panel 017 remains accepted.
+- TEST_PROJECT_B / Panel 003 remains accepted.
+- TEST_PROJECT_C / Panel 001 remains REJECTED_FOR_NEW_USE as a historical decision made while REUSABLE = NO.
+- TEST_PROJECT_D / Panel 001 records a new accepted use after REUSABLE = YES.
+
+### Hypothesis
+If many lifecycle changes accumulate, discoverability or chronology may eventually become awkward. This test does not prove that a richer versioning system is necessary.
+
+Authorization for who may reverse a lifecycle recommendation remains unresolved.
+
+### Architecture change earned
+No new lifecycle vocabulary or global system was required.
+
+The tested model now supports:
+
+REUSABLE = YES
+→ REUSABLE = NO
+→ REUSABLE = YES
+
+while preserving the earlier lifecycle decision and all historical consumers.
+
+### Artifacts added
+- assets/characters/helga/HELGA-CROUCH-CANDIDATE-03_LIFECYCLE_REVERSAL_DECISION.md
+- correspondence/requests/test_project_d/TESTD-P001-HELGA-REUSE-001.md
+- projects/test_project_d/panels/001/PANEL_STATE.md
+- projects/test_project_d/panels/001/decisions/HELGA_REUSE_ASSET_DECISION.md
+- correspondence/handoffs/cross-project/HELGA_CROUCH_REUSE_REVERSAL_HANDOFF_2026-10-03.md
+
+### What was deliberately not added
+- ACTIVE / INACTIVE / RESTORED / REVIVED / RETIRED / DEPRECATED / SUPERSEDED
+- VALID_FROM / VALID_TO
+- global asset registry
+- global lifecycle database
+- graph
+- event sourcing
+- API
+- automatic propagation
+- synchronization
+- automatic canonical promotion
+- universal governance system
+
+### Next minimal test
+TEST 7 — Multiple independent consumers: determine whether repository search remains adequate when one asset has several consumers. Do not add a consumer registry unless the scenario demonstrates a concrete discoverability failure.
