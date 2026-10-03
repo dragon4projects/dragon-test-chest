@@ -194,3 +194,83 @@ No richer lifecycle vocabulary or registry was justified.
 
 Next minimal test:
 **TEST #7 — MULTIPLE INDEPENDENT CONSUMERS**, specifically to stress discoverability with many consumers and determine whether repository search remains sufficient.
+
+## 2026-10-03 — Test 7 — Multiple independent consumers
+
+### Observed
+Three additional independent consumers were created for the existing asset HELGA-CROUCH-CANDIDATE-03:
+
+- TEST_PROJECT_E / Panel 002 — TESTE-P002-HELGA-REUSE-001
+- TEST_PROJECT_F / Panel 011 — TESTF-P011-HELGA-REUSE-001
+- TEST_PROJECT_G / Panel 004 — TESTG-P004-HELGA-REUSE-001
+
+Each consumer has:
+request → panel state → decision → existing asset
+
+No duplicate asset record was created.
+
+The complete tested consumer set is now seven scenarios: WITCH, TEST_PROJECT_B, TEST_PROJECT_C, TEST_PROJECT_D, TEST_PROJECT_E, TEST_PROJECT_F, TEST_PROJECT_G.
+
+TEST_PROJECT_C remains a historical REJECTED_FOR_NEW_USE decision made while REUSABLE=NO. It was not rewritten.
+
+### Search / discoverability observation
+The available GitHub connector search returned no matches for the asset name or broad terms including HELGA, Panel, REUSABLE, and asset. Therefore that interface could not be used as a reliable exhaustive repository-search mechanism during this test.
+
+The consumer set was reconstructed by following the asset record's Related records and then each consumer's request → panel state → decision chain.
+
+This is a search-interface observation, not evidence that the repository data model has lost the relationships.
+
+### Inference
+The current record model can represent several independent consumers of one asset without a global consumer registry, provided the asset record and consumer records retain explicit links.
+
+For the tested seven-consumer structure, the known consumer set was recoverable from repository records.
+
+### Hypothesis
+At larger scale, manually maintained Related records may become incomplete or harder to audit. Broad search may also become noisy if incidental mentions proliferate.
+
+Neither hypothesis is sufficient to introduce a registry now.
+
+### Architecture change earned
+No new global architecture layer was added.
+
+The tested model now supports:
+- one asset;
+- one origin;
+- multiple independent consumer requests;
+- independent consumer decisions;
+- historical rejected consumption;
+- current accepted consumption;
+- separate lifecycle decisions.
+
+### Artifacts added
+TEST_PROJECT_E:
+- correspondence/requests/test_project_e/TESTE-P002-HELGA-REUSE-001.md
+- projects/test_project_e/panels/002/PANEL_STATE.md
+- projects/test_project_e/panels/002/decisions/HELGA_REUSE_ASSET_DECISION.md
+
+TEST_PROJECT_F:
+- correspondence/requests/test_project_f/TESTF-P011-HELGA-REUSE-001.md
+- projects/test_project_f/panels/011/PANEL_STATE.md
+- projects/test_project_f/panels/011/decisions/HELGA_REUSE_ASSET_DECISION.md
+
+TEST_PROJECT_G:
+- correspondence/requests/test_project_g/TESTG-P004-HELGA-REUSE-001.md
+- projects/test_project_g/panels/004/PANEL_STATE.md
+- projects/test_project_g/panels/004/decisions/HELGA_REUSE_ASSET_DECISION.md
+
+Focused handoff:
+- correspondence/handoffs/cross-project/HELGA_CROUCH_MULTIPLE_CONSUMERS_TEST7_HANDOFF_2026-10-03.md
+
+### What was deliberately not added
+- consumer registry;
+- global asset registry;
+- usage table;
+- graph;
+- automatic index;
+- API;
+- synchronization;
+- duplicate asset records;
+- richer lifecycle vocabulary.
+
+### Next minimal test
+TEST 8 — Replacement / supersession.
