@@ -160,7 +160,7 @@ Only after the previous tests, decide which semantics are stable enough to propo
 ### TEST 7 — Multiple independent consumers
 **Scenario:** HELGA-CROUCH-CANDIDATE-03 is consumed independently by TEST_PROJECT_E / Panel 002, TEST_PROJECT_F / Panel 011, and TEST_PROJECT_G / Panel 004.
 
-**Checkpoint: PASS for the tested structure**
+**Checkpoint: PARTIAL**
 
 Verified:
 - seven known consumer scenarios can be represented without duplicate asset records;
@@ -176,10 +176,10 @@ Discoverability finding:
 - nevertheless, the repository's explicit record links allowed the seven known consumers to be reconstructed;
 - this did not demonstrate a data-model failure or justify a consumer registry.
 
-Key rule earned:
-**For the tested number and structure of independent consumers, repository records and explicit cross-links are sufficient without a global consumer registry.**
+Bounded result:
+**The record model represents the tested independent consumers without a global consumer registry, but exhaustive repository-search adequacy remains unproven because the available search interface returned zero results.**
 
-This is a bounded result, not a universal statement that a registry can never become useful.
+This is not a universal statement that a registry can never become useful.
 
 ### TEST 8 — Replacement / supersession
 Goal: test a consumer replacing one accepted asset with another without rewriting provenance, prior consumer decisions, or character canon.
