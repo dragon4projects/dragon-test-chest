@@ -101,6 +101,21 @@ Observed solution:
 Important unresolved design question:
 - ownership/governance of future reuse recommendations is now exposed as a real architectural concern, but this test does not justify a global governance system.
 
+## TEST 5 — Full report confirmation
+
+The complete Test #5 report confirms the implementation already recorded in this lab. No additional architecture is justified.
+
+Confirmed findings:
+- historical `REUSABLE = YES` can coexist with current `REUSABLE = NO`;
+- old accepted consumers remain historical facts;
+- provenance and character canon remain unchanged;
+- an explicit asset-level lifecycle decision is sufficient for this scenario;
+- new consumers decide locally;
+- no global registry is justified;
+- lifecycle-decision ownership is an open question, not a universal governance rule.
+
+The next proposed experiment is **REUSE REVERSAL**: test whether the asset can later become eligible for reuse again without rewriting prior lifecycle decisions or historical consumers.
+
 ## Next checkpoints
 
 ### TEST 6 — Multiple independent consumers
