@@ -223,7 +223,9 @@ This is a search-interface observation, not evidence that the repository data mo
 ### Inference
 The current record model can represent several independent consumers of one asset without a global consumer registry, provided the asset record and consumer records retain explicit links.
 
-For the tested seven-consumer structure, the known consumer set was recoverable from repository records.
+For the tested seven-consumer structure, the known consumer set was recoverable from the asset record and explicit repository links.
+
+The separate question of whether ordinary repository search can independently discover all consumers was not proven because the available search interface returned zero results.
 
 ### Hypothesis
 At larger scale, manually maintained Related records may become incomplete or harder to audit. Broad search may also become noisy if incidental mentions proliferate.
