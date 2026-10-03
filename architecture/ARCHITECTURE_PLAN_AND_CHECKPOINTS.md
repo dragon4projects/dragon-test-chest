@@ -92,7 +92,7 @@ Checkpoint: PASS for tested scenario.
 
 Observed solution:
 - current asset record uses REUSABLE = NO;
-- the meaning of NO is explicitly defined as “do not select for a new production consuming task”;
+- the meaning of NO is explicitly defined as “do not select this asset for a new production consuming task”;
 - a separate lifecycle decision records the change;
 - old consumers remain unchanged historical facts;
 - TEST_PROJECT_C records a local rejection;
@@ -101,42 +101,50 @@ Observed solution:
 Important unresolved design question:
 - ownership/governance of future reuse recommendations is now exposed as a real architectural concern, but this test does not justify a global governance system.
 
-## TEST 5 — Full report confirmation
+### TEST 6 — Asset lifecycle / reuse reversal
+**Scenario:** HELGA-CROUCH-CANDIDATE-03 moves from REUSABLE = NO back to REUSABLE = YES, then TEST_PROJECT_D / Panel 001 attempts a new use.
 
-The complete Test #5 report confirms the implementation already recorded in this lab. No additional architecture is justified.
+**Task:** TESTD-P001-HELGA-REUSE-001
 
-Confirmed findings:
-- historical `REUSABLE = YES` can coexist with current `REUSABLE = NO`;
-- old accepted consumers remain historical facts;
-- provenance and character canon remain unchanged;
-- an explicit asset-level lifecycle decision is sufficient for this scenario;
-- new consumers decide locally;
-- no global registry is justified;
-- lifecycle-decision ownership is an open question, not a universal governance rule.
+**Checkpoint: PASS for tested scenario**
 
-The next proposed experiment is **REUSE REVERSAL**: test whether the asset can later become eligible for reuse again without rewriting prior lifecycle decisions or historical consumers.
+Verified:
+- the current asset record can be changed from REUSABLE = NO to REUSABLE = YES;
+- the earlier NO lifecycle decision can remain unchanged as historical evidence;
+- the reversal can be recorded as a separate focused lifecycle decision;
+- WITCH / Panel 017 remains accepted;
+- TEST_PROJECT_B / Panel 003 remains accepted;
+- TEST_PROJECT_C / Panel 001 remains historically REJECTED_FOR_NEW_USE;
+- TEST_PROJECT_D / Panel 001 can record a normal new request → panel state → decision using the same asset;
+- no automatic propagation to old consumers is required;
+- character canon and provenance remain unchanged.
+
+Key rule earned:
+**A reusable asset may move from YES → NO → YES without rewriting prior lifecycle decisions or historical consumer decisions, provided the current asset record carries the current recommendation and lifecycle changes are recorded as separate focused decisions.**
+
+This does not yet prove a universal governance/authority model for who may reverse a lifecycle recommendation.
 
 ## Next checkpoints
 
-### TEST 6 — Multiple independent consumers
+### TEST 7 — Multiple independent consumers
 Goal: determine whether repository search remains adequate when one asset has several consumers.
 
 Do not add a consumer registry before the scenario demonstrates a discoverability failure.
 
-### TEST 7 — Replacement / supersession
+### TEST 8 — Replacement / supersession
 Goal: test a consumer replacing one accepted asset with another without rewriting provenance or character canon.
 
-### TEST 8 — Physical binary asset
+### TEST 9 — Physical binary asset
 Goal: test storing the actual PNG in GitHub and connecting it unambiguously to the durable asset record.
 
-### TEST 9 — New-sister reconstruction
+### TEST 10 — New-sister reconstruction
 A fresh sister receives only repository access and the test protocol. She must reconstruct:
 - current architecture;
 - historical test findings;
 - current open questions;
 - where to continue.
 
-### TEST 10 — Architecture freeze candidate
+### TEST 11 — Architecture freeze candidate
 Only after the previous tests, decide which semantics are stable enough to propose for production repositories.
 
 ## Rules for every future test
