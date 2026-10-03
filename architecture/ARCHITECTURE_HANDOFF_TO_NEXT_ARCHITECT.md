@@ -51,24 +51,27 @@ REUSABLE
 
 They must not be collapsed into one status.
 
-Current proven lifecycle example:
+The tested lifecycle sequence now includes:
 
 PAST: REUSABLE=YES
-CURRENT: REUSABLE=NO
+THEN: REUSABLE=NO
+CURRENT: REUSABLE=YES
 
-For the tested meaning, REUSABLE=NO means:
+For Test #5, REUSABLE=NO meant:
 "Do not select this asset for a new production consuming task."
 
-It does NOT mean:
+For Test #6, REUSABLE=YES means:
+"The asset may be considered for a new production consuming task."
+
+REUSABLE is a current reuse recommendation. It does NOT by itself mean:
 - deleted
 - invalid
-- historically rejected
-- old consumers are invalid
 - canonical
-- forbidden forever
-- originating project decision revoked
+- historical consumers were wrong
+- old consumer decisions are automatically reopened
+- originating project authority changed
 
-Historical reusable state may remain recorded alongside the current state.
+Historical reusable states may coexist with the current state through the asset record plus focused lifecycle decisions.
 
 ## 5. What Test #5 proved
 
@@ -90,34 +93,92 @@ Helga canon remained unchanged.
 No global asset registry, graph, event sourcing, API, synchronization, or automatic propagation was needed.
 
 Important open question:
-Who owns a later cross-project lifecycle recommendation is not yet universally defined. Test #5 records this as an unresolved governance question, not as a final rule.
+Who owns a later cross-project lifecycle recommendation is not yet universally defined.
 
-## 6. Next test
+## 6. What Test #6 proved
 
-NEXT MINIMAL EXPERIMENT: REUSE REVERSAL.
+Test #6 = ASSET LIFECYCLE — REUSE REVERSAL.
 
 Scenario:
-PAST REUSABLE=YES
-CURRENT REUSABLE=NO
-FUTURE asset becomes eligible for reuse again.
+HELGA-CROUCH-CANDIDATE-03 moved from REUSABLE=NO back to REUSABLE=YES. TEST_PROJECT_D / Panel 001 then made a new consuming request.
+
+### Observed facts
+
+- The asset record was changed to current REUSABLE=YES.
+- The earlier lifecycle decision for REUSABLE=NO was not rewritten.
+- A separate reversal lifecycle decision was created.
+- WITCH / Panel 017 remained accepted.
+- TEST_PROJECT_B / Panel 003 remained accepted.
+- TEST_PROJECT_C / Panel 001 remained historically REJECTED_FOR_NEW_USE.
+- TEST_PROJECT_D / Panel 001 recorded a new accepted use.
+- Provenance and Helga character canon remained unchanged.
+- The normal request → panel state → decision chain was sufficient for the new consumer.
+
+### Inference
+
+The existing boolean REUSABLE plus separate focused lifecycle decisions is sufficient for the tested YES → NO → YES reversal.
+
+A lifecycle reversal does not require retroactive mutation of historical consumer decisions.
+
+### Hypotheses / open questions
+
+- Many lifecycle changes may eventually create a chronology/discoverability problem. This test did not demonstrate one.
+- The architecture still does not prove a universal governance model for who is authorized to reverse a lifecycle recommendation.
+
+### Accepted architecture after Test #6
+
+A reusable asset may move:
+
+REUSABLE=YES
+→ REUSABLE=NO
+→ REUSABLE=YES
+
+without rewriting previous lifecycle decisions or historical consumers, provided the asset record exposes the current recommendation and each lifecycle change is recorded durably.
+
+No richer lifecycle vocabulary was required.
+
+## 7. Relevant Test #6 artifacts
+
+Asset:
+- assets/characters/helga/HELGA-CROUCH-CANDIDATE-03.md
+
+Earlier lifecycle decision:
+- assets/characters/helga/HELGA-CROUCH-CANDIDATE-03_LIFECYCLE_DECISION.md
+
+Reversal lifecycle decision:
+- assets/characters/helga/HELGA-CROUCH-CANDIDATE-03_LIFECYCLE_REVERSAL_DECISION.md
+
+Historical consumer:
+- projects/test_project_c/panels/001/decisions/HELGA_OLD_ASSET_DECISION.md
+
+New consumer:
+- correspondence/requests/test_project_d/TESTD-P001-HELGA-REUSE-001.md
+- projects/test_project_d/panels/001/PANEL_STATE.md
+- projects/test_project_d/panels/001/decisions/HELGA_REUSE_ASSET_DECISION.md
+
+Focused lifecycle handoff:
+- correspondence/handoffs/cross-project/HELGA_CROUCH_REUSE_REVERSAL_HANDOFF_2026-10-03.md
+
+## 8. Next test
+
+NEXT MINIMAL EXPERIMENT: TEST 7 — MULTIPLE INDEPENDENT CONSUMERS.
 
 Question:
-Can the existing asset record + separate focused lifecycle decision express the reversal without rewriting the previous lifecycle decision or historical consumers?
+Does repository search remain adequate when one asset has several independent consumers, including consumers from different lifecycle moments?
 
-Constraint:
-Do not add richer lifecycle vocabulary unless the real test breaks the current model.
+Do not add a consumer registry or global index before the scenario demonstrates a concrete discoverability failure.
 
-## 7. Planned tests
+## 9. Planned tests
 
-- Test 6: multiple independent consumers
-- Test 7: replacement / supersession
-- Test 8: physical binary asset
-- Test 9: reconstruction by a new sister
-- Test 10: architecture freeze candidate
+- Test 7: multiple independent consumers
+- Test 8: replacement / supersession
+- Test 9: physical binary asset
+- Test 10: reconstruction by a new sister
+- Test 11: architecture freeze candidate
 
 These are plans, not yet proven rules.
 
-## 8. Test discipline
+## 10. Test discipline
 
 For every new test:
 1. Start with the smallest real scenario.
@@ -130,7 +191,7 @@ For every new test:
 8. Record unresolved questions instead of solving them speculatively.
 9. After the test, update this handoff, the architecture plan/checkpoints file, and the changes-after-tests file.
 
-## 9. Durable memory rule
+## 11. Durable memory rule
 
 This file is itself a living architectural memory object.
 
@@ -147,7 +208,7 @@ Do not wait for a new test if the new information materially changes what the ne
 
 The handoff must describe CURRENT knowledge, while preserving historical test results and unresolved questions.
 
-## 10. Source discipline
+## 12. Source discipline
 
 Do not claim:
 - that a file was inspected if it was not inspected;
@@ -157,7 +218,7 @@ Do not claim:
 
 When uncertain, label the uncertainty.
 
-## 11. Current repository role
+## 13. Current repository role
 
 This repository is the durable memory of the architecture experiment.
 Production repositories are not the place for architecture experiments.
@@ -168,7 +229,7 @@ The next sister should read this file first, then:
 3. relevant test artifacts and handoffs
 4. only then begin the next test
 
-## 12. Current status at handoff
+## 14. Current status at handoff
 
 Tests completed:
 - Test 1 — repository-first continuity
@@ -176,9 +237,10 @@ Tests completed:
 - Test 3 — actual production chain
 - Test 4 — cross-project reuse
 - Test 5 — asset lifecycle / reuse revocation
+- Test 6 — asset lifecycle / reuse reversal
 
 Current conclusion:
-The architecture is still intentionally small and test-driven. The existing model has survived cross-project reuse and stopping new reuse without requiring a global asset system.
+The architecture has survived both stopping and restoring new reuse of the same asset without rewriting historical lifecycle decisions or historical consumers.
 
 Immediate next action:
-Run REUSE REVERSAL and update this handoff immediately afterward.
+Run TEST 7 — MULTIPLE INDEPENDENT CONSUMERS and update this handoff immediately afterward.
