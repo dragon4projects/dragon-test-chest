@@ -39,3 +39,9 @@
 ## Test note
 
 These are deliberately real documents from the Cloud Library plus architecture-test material created in this repository. Handoffs transfer context, provenance, decisions and open state; they do not automatically transfer authority.
+
+## TEST 7 / CROSS-PROJECT
+
+- [HELGA-CROUCH-CANDIDATE-03 — multiple consumers, Test #7, 2026-10-03](cross-project/HELGA_CROUCH_MULTIPLE_CONSUMERS_TEST7_HANDOFF_2026-10-03.md)
+  - Focused Test #7 handoff.
+  - Records seven known consumer scenarios, the discoverability observation, current bounded conclusion, and open questions.
