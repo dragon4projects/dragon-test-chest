@@ -156,3 +156,30 @@ Only after the previous tests, decide which semantics are stable enough to propo
 - Never let a handoff silently transfer authority.
 - Distinguish observation, inference, hypothesis, and accepted architecture.
 - Record unresolved questions rather than solving them speculatively.
+
+### TEST 7 — Multiple independent consumers
+**Scenario:** HELGA-CROUCH-CANDIDATE-03 is consumed independently by TEST_PROJECT_E / Panel 002, TEST_PROJECT_F / Panel 011, and TEST_PROJECT_G / Panel 004.
+
+**Checkpoint: PASS for the tested structure**
+
+Verified:
+- seven known consumer scenarios can be represented without duplicate asset records;
+- each consumer has its own request, panel state, and decision;
+- each consumer decision explicitly identifies the same asset;
+- historical TEST_PROJECT_C rejection remains distinct from current accepted consumers;
+- origin remains WITCH / Panel 017;
+- lifecycle decisions remain separate from consumption;
+- the asset record's Related records plus consumer-local links allow reconstruction of the tested consumer set.
+
+Discoverability finding:
+- the available GitHub connector search returned no results for the tested asset and broad terms, so it was not a reliable empirical search interface in this run;
+- nevertheless, the repository's explicit record links allowed the seven known consumers to be reconstructed;
+- this did not demonstrate a data-model failure or justify a consumer registry.
+
+Key rule earned:
+**For the tested number and structure of independent consumers, repository records and explicit cross-links are sufficient without a global consumer registry.**
+
+This is a bounded result, not a universal statement that a registry can never become useful.
+
+### TEST 8 — Replacement / supersession
+Goal: test a consumer replacing one accepted asset with another without rewriting provenance, prior consumer decisions, or character canon.
