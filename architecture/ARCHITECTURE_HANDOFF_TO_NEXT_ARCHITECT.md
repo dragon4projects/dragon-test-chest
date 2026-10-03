@@ -294,7 +294,7 @@ The next sister should inspect the existing Test #6 artifacts and then run Test 
 
 The rule is reaffirmed: after every architecture test, test-derived conclusion, or materially important new architectural data from the user or assistant, update this file, even if the architecture itself does not change.
 
-## 16. Test #7 — MULTIPLE INDEPENDENT CONSUMERS — PASS (2026-10-03)
+## 16. Test #7 — MULTIPLE INDEPENDENT CONSUMERS — PARTIAL (2026-10-03)
 
 Test #7 added three independent consumers of the existing asset HELGA-CROUCH-CANDIDATE-03 without creating duplicate asset records:
 
@@ -374,6 +374,8 @@ Neither issue is proven as an architectural failure by Test #7.
 For the tested scale and structure:
 
 Repository records are sufficient to represent multiple independent consumers of one asset without a global consumer registry.
+
+However, exhaustive repository-search adequacy was not proven because the available search interface returned zero results for the tested terms. The durable record links themselves remained sufficient to reconstruct the known seven scenarios.
 
 This is not a universal claim that a registry will never be useful.
 
