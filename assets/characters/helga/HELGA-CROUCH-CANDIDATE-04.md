@@ -33,7 +33,7 @@ The replacement is a new asset identity. It does not rewrite HELGA-CROUCH-CANDID
 ## Physical binary
 
 The Test #9 physical representation is stored in the repository at:
-- Primary binary: assets/characters/helga/binary/HELGA-CROUCH-CANDIDATE-04.png
+- Primary binary: assets/characters/helga/binary/HELGA-CROUCH-CANDIDATE-04-modified.png
 
 The primary binary is a real 1×1 PNG test fixture stored in Git. It is deliberately small; its purpose is to test the record ↔ physical-file relationship, not to represent a production image.
 
@@ -42,3 +42,10 @@ For the same test, two additional physical fixtures exist:
 - Modified binary fixture: assets/characters/helga/binary/HELGA-CROUCH-CANDIDATE-04-modified.png
 
 The primary and copy currently resolve to the same Git blob SHA, while the modified fixture resolves to a different Git blob SHA. These are Test #9 observations, not additional asset identities.
+
+
+## Test #9 branch observation
+
+On the temporary Test #9 missing-binary observation branch only, the primary binary path was removed from the current tree while this asset record remained present. The record therefore survived independently of the physical file.
+
+The branch also points the same asset record at the existing modified binary fixture for a path-change observation. This is a test-branch experiment only and is not the accepted main-branch state.
