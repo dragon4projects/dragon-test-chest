@@ -211,9 +211,13 @@ EXPLICIT REPOSITORY EVIDENCE.
 ### Bounded interpretation
 The result supports semantic reconstruction of the tested architecture. It does not prove exhaustive repository discovery.
 
-The main branch currently has no dedicated Test #10 focused handoff/result artifact. This is a documentation gap and does not justify adding a registry or discovery subsystem.
+### Documentation gap closure
+A dedicated focused handoff was added after Test #11 identified its absence:
+- correspondence/handoffs/cross-project/ARCHITECTURE_TEST10_NEW_SISTER_RECONSTRUCTION_HANDOFF_2026-10-04.md
 
-No historical Test #10 conclusion is rewritten.
+This handoff records the reported reconstruction method and bounded result without upgrading the evidence beyond what the test execution established.
+
+No architecture was added for this documentation repair.
 
 ## 2026-10-04 — Test 11 — Architecture freeze candidate
 
@@ -278,3 +282,55 @@ No broad Test #12 is required. If further validation is desired, test exactly on
 - binary relocation/content identity.
 
 Do not combine scale, governance, discovery, and storage in one experiment.
+
+## 2026-10-04 — Test 12 — Binary relocation / content identity
+
+### Scenario
+The primary binary for HELGA-CROUCH-CANDIDATE-04 was moved from:
+`assets/characters/helga/binary/HELGA-CROUCH-CANDIDATE-04.png`
+to:
+`assets/characters/helga/binary/relocated/HELGA-CROUCH-CANDIDATE-04.png`.
+
+The destination was byte-identical and resolved to the same Git blob SHA:
+`62a5f8f47fec02344e5bf9061888262f677cf5d6`.
+
+The asset record was explicitly updated to the new path and the old path was removed on the test branch.
+
+### Observed
+- Asset ID remained HELGA-CROUCH-CANDIDATE-04;
+- provenance remained unchanged;
+- consumer/replacement history remained unchanged;
+- REUSABLE remained unchanged;
+- character canon remained unchanged;
+- file path changed;
+- Git blob/content identity did not change.
+
+### Architecture change earned
+For the tested repository-local relocation scenario:
+
+**FILE PATH is a mutable locator, not the semantic Asset identity.**
+
+Same binary content moved to a new repository path can remain the same Asset when the durable asset record is explicitly updated to the new locator.
+
+### Minimal change introduced
+- one focused binary-relocation decision;
+- one focused Test #12 handoff;
+- the existing asset record's physical path updated;
+- old path removed on the test branch;
+- Test #10 focused handoff added to close the earlier documentation gap.
+
+### What was deliberately not added
+- relocation entity;
+- binary registry;
+- persistent content-ID field;
+- asset version entity;
+- synchronization layer;
+- global lifecycle state.
+
+### Boundary
+This does not establish semantics for modified binary content, multiple binaries per asset, multiple assets sharing one binary, cross-repository relocation, external storage, persistent content-ID policy, or large-scale binary governance.
+
+### Next minimal test
+No broad Test #13 is required. If further validation is desired, choose exactly one remaining open boundary:
+- MANY SEQUENTIAL REPLACEMENTS; or
+- CROSS-REPOSITORY / EXTERNAL-STORAGE RELOCATION.
