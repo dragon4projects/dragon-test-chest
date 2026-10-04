@@ -46,13 +46,13 @@ The freeze is explicitly reversible by new evidence.
 
 ### Explicit scope
 
-The above rules are frozen only to the scenarios actually evidenced by Tests #1–#10. They are not universal claims about arbitrary scale, storage systems, governance, or future semantics.
+The above rules are frozen only to the scenarios actually evidenced by Tests #1–#12. They are not universal claims about arbitrary scale, storage systems, governance, or future semantics.
 
 ### Test #10 note
 
-Test #10 was reported by the test execution as **PASS — FOR TESTED SCOPE**: a new sister reconstructed the tested architecture from the living handoff plus explicit repository evidence.
+Test #10 was reported as **PASS — FOR TESTED SCOPE**: a new sister reconstructed the tested architecture from the living handoff plus explicit repository evidence.
 
-The current main branch does not contain a separate Test #10 focused handoff/result artifact. Therefore that result is accepted here as the execution result, but its detailed reconstruction procedure is not independently re-auditable from a dedicated Test #10 document. This is a documentation gap, not a reason to add new architecture.
+A dedicated Test #10 focused handoff has now been added to the repository to close the documentation gap identified by Test #11. It remains a bounded execution record and does not claim exhaustive discovery.
 
 ## 3. Current architectural chain
 
@@ -148,13 +148,85 @@ Execution result: **PASS — FOR TESTED SCOPE**.
 The reported reconstruction succeeded using:
 LIVING HANDOFF + EXPLICIT REPOSITORY EVIDENCE.
 
-The result does not prove exhaustive repository discovery. The main-branch repository currently lacks a dedicated Test #10 focused handoff/result document, so future sisters should treat the execution result as bounded evidence and the absence of that artifact as a documentation gap.
+The result does not prove exhaustive repository discovery. A dedicated focused handoff now exists and records the bounded execution result.
 
-No registry was added as a response to this gap.
+No registry was added as a response to the discovery limitation.
 
-## 10. Not frozen
+## 10. Test #11 — ARCHITECTURE FREEZE CANDIDATE
 
-The following are deliberately outside the candidate freeze:
+Execution result: **PASS — FREEZE CANDIDATE IS READY.**
+
+Test #11 audited the accumulated evidence and separated confirmed architecture from open/scaled questions. The freeze is stable but reversible by new evidence.
+
+## 11. Test #12 — BINARY RELOCATION / CONTENT IDENTITY
+
+Execution result: **PASS — FOR TESTED REPOSITORY-LOCAL SCENARIO.**
+
+### Scenario
+
+The primary binary for HELGA-CROUCH-CANDIDATE-04 was moved from:
+
+`assets/characters/helga/binary/HELGA-CROUCH-CANDIDATE-04.png`
+
+to:
+
+`assets/characters/helga/binary/relocated/HELGA-CROUCH-CANDIDATE-04.png`
+
+The destination contains exactly the same binary content.
+
+Both paths resolve to Git blob SHA:
+
+`62a5f8f47fec02344e5bf9061888262f677cf5d6`
+
+The asset record was explicitly updated to the new path, and the old path was removed from the test branch.
+
+### Observed
+
+- Asset ID remained HELGA-CROUCH-CANDIDATE-04.
+- No new asset record was required.
+- Provenance remained unchanged.
+- Consumer/replacement history remained unchanged.
+- REUSABLE remained unchanged.
+- Character canon remained unchanged.
+- File path changed.
+- Git blob/content identity did not change.
+
+### Rule strengthened
+
+For the tested repository-local relocation scenario:
+
+**FILE PATH is a mutable locator, not the semantic Asset identity.**
+
+Same binary content moved to a new repository path can remain the same Asset when the durable asset record is explicitly updated to the new locator.
+
+### What was NOT added
+
+No relocation entity, binary registry, persistent content-ID field, version entity, synchronization layer, or global lifecycle status was needed.
+
+### Boundary
+
+This does not prove policy for:
+- modified content;
+- multiple binaries per asset;
+- multiple assets sharing one binary;
+- cross-repository relocation;
+- external storage;
+- persistent content identifiers;
+- large-scale binary governance.
+
+Those remain open.
+
+## 12. Current confirmed core after Test #12
+
+The previous freeze remains intact and gains one bounded clarification:
+
+**Asset identity survives repository-local relocation of identical binary content; file path is a mutable locator.**
+
+This is an extension of the already-confirmed identity boundary, not a new global architecture layer.
+
+## 13. Not frozen
+
+The following remain deliberately outside the freeze:
 
 - exhaustive repository discovery;
 - repository search adequacy at larger scale;
@@ -163,26 +235,27 @@ The following are deliberately outside the candidate freeze:
 - many sequential replacements;
 - global asset retirement/supersession semantics;
 - persistent content-identifier policy;
-- binary relocation semantics;
 - many binaries per asset;
 - many assets sharing one binary;
 - external binary storage;
+- cross-repository binary relocation;
 - large-scale binary governance;
 - any untested automatic propagation or synchronization behavior.
 
 These are boundaries, not failures.
 
-## 11. Open questions
+## 14. Open questions
 
 - Who owns later cross-project lifecycle recommendations at scale?
 - Does chronology remain readable after many lifecycle changes?
 - Do many sequential replacements justify a more explicit replacement representation?
 - Will a future scenario require a distinction between consumer-specific replacement and global asset retirement/supersession?
 - Should production asset records persist a content identifier across relocation or storage boundaries?
-- How should relocation and multiple-binary relationships be represented?
+- How should multiple-binary relationships be represented?
+- How should cross-repository or external-storage relocation be represented?
 - Does reverse discovery remain usable when the repository becomes much larger?
 
-## 12. Not proven
+## 15. Not proven
 
 The following must NOT be used as architecture rules:
 
@@ -193,65 +266,67 @@ The following must NOT be used as architecture rules:
 - “One binary path is sufficient for every future asset model.”
 - “Consumer replacement can never become global supersession.”
 - “No registry will ever be needed.”
+- “Repository-local relocation semantics automatically generalize to external storage.”
 
 Absence of a demonstrated need is not proof of impossibility or permanent exclusion.
 
-## 13. Negative evidence
+## 16. Negative evidence
 
 Tests repeatedly exercised scenarios that could have motivated additional global architecture and did not require it.
 
 ### Global asset registry
 WHAT WAS TESTED: cross-project reuse and multiple independent consumers.
-WHAT WOULD HAVE REQUIRED IT: a demonstrated need for a separate global asset index to express or preserve the tested consumers.
 WHAT ACTUALLY HAPPENED: existing asset records plus explicit consumer-local decisions/links represented the tested scenarios.
 CONCLUSION: not justified for the tested scope.
 
 ### Consumer registry
 WHAT WAS TESTED: seven known consumers of one asset.
-WHAT WOULD HAVE REQUIRED IT: consumer relationships becoming impossible to represent without a global registry.
 WHAT ACTUALLY HAPPENED: consumer-local records and asset Related links represented the known set.
 CONCLUSION: not justified; exhaustive discovery remains open.
 
 ### Supersession registry / global replacement state
 WHAT WAS TESTED: one consumer moving from Asset A to Asset B.
-WHAT WOULD HAVE REQUIRED IT: a proven need for asset-global supersession semantics.
 WHAT ACTUALLY HAPPENED: a focused replacement decision preserved both historical and current consumption.
 CONCLUSION: not justified for consumer-specific replacement.
 
 ### Graph / database / API / synchronization / automatic propagation
-WHAT WAS TESTED: production chain, cross-project reuse, lifecycle reversal, multiple consumers, replacement, physical binary.
-WHAT WOULD HAVE REQUIRED IT: failure of ordinary linked repository records to preserve the tested facts.
-WHAT ACTUALLY HAPPENED: the tested scenarios were representable with ordinary repository records and links.
+WHAT WAS TESTED: production chain, cross-project reuse, lifecycle reversal, multiple consumers, replacement, physical binary, repository-local binary relocation.
+WHAT ACTUALLY HAPPENED: ordinary repository records and links represented the tested facts.
 CONCLUSION: not justified for the tested scope.
+
+### Binary relocation layer
+WHAT WAS TESTED: same binary content moved to a new repository path.
+WHAT ACTUALLY HAPPENED: asset record + updated path + existing Git content identity were sufficient.
+CONCLUSION: no relocation entity or persistent content-ID layer was justified for this repository-local scenario.
 
 ### Automatic canonical promotion
 WHAT WAS TESTED: project/panel acceptance of Helga assets.
-WHAT WOULD HAVE REQUIRED IT: evidence that panel acceptance must change character canon automatically.
 WHAT ACTUALLY HAPPENED: accepted assets remained non-canonical unless a separate character-level fact existed.
 CONCLUSION: not justified.
 
 ### New global lifecycle vocabulary
 WHAT WAS TESTED: YES → NO → YES reuse lifecycle and consumer-specific replacement.
-WHAT WOULD HAVE REQUIRED IT: a failure of existing lifecycle/current-state plus focused decisions to preserve history.
-WHAT ACTUALLY HAPPENED: the existing model preserved both current and historical states.
+WHAT ACTUALLY HAPPENED: the existing lifecycle/current-state plus focused decisions preserved history.
 CONCLUSION: not justified.
 
-## 14. Discoverability boundary
+## 17. Discoverability and binary boundary
 
 Confirmed:
-- explicit record links support reconstruction of the tested production, reuse, lifecycle, replacement, and binary scenarios;
-- a new sister can reconstruct the tested model within the reported Test #10 scope using handoff + repository evidence.
+- explicit record links support reconstruction of tested production, reuse, lifecycle, replacement, and binary scenarios;
+- a new sister can reconstruct the tested model within the reported Test #10 scope using handoff + repository evidence;
+- a repository-local binary can move paths without changing Asset ID when content remains identical and the asset record is updated.
 
 Not confirmed:
 - exhaustive repository search;
 - arbitrary-scale reverse discovery;
 - discovery from Git blob/content identity alone;
-- guaranteed search-interface completeness.
+- cross-repository or external-storage relocation;
+- universal content-ID policy.
 
 Important:
 Test #7's zero-result search observation is evidence about the tested discovery interface, not proof that the underlying data model is defective.
 
-## 15. Freeze discipline
+## 18. Freeze discipline
 
 The candidate freeze is:
 
@@ -263,7 +338,7 @@ A future test may add, split, weaken, or replace a rule if a real scenario demon
 
 Historical tests must not be rewritten to fit the freeze.
 
-## 16. Current status at handoff
+## 19. Current status at handoff
 
 Tests completed:
 - Test 1 — repository-first continuity
@@ -277,6 +352,7 @@ Tests completed:
 - Test 9 — physical binary asset
 - Test 10 — new-sister reconstruction, PASS FOR TESTED SCOPE
 - Test 11 — architecture freeze candidate, READY
+- Test 12 — binary relocation / content identity, PASS FOR TESTED REPOSITORY-LOCAL SCENARIO
 
 Immediate next action:
-No large architecture test is justified by Test #11. If further validation is desired, run the smallest open-boundary test only.
+No broad Test #13 is justified automatically. If further validation is desired, choose exactly one existing open boundary. The smallest remaining binary boundary is cross-repository/external-storage relocation; the smallest structural boundary is many sequential replacements.
