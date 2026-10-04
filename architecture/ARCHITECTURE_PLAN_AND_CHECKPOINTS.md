@@ -2,7 +2,7 @@
 
 **Repository:** dragon4projects/dragon-test-chest
 **Purpose:** durable laboratory record for building and testing the GitHub-based project-memory architecture.
-**Status:** active experiment; not production architecture.
+**Status:** active experiment; Test #11 produced a candidate freeze of the minimal confirmed core.
 
 ## Working principle
 
@@ -31,7 +31,7 @@ Verified:
 ### TEST 2 — Minimal production chain
 **Scenario:** WITCH → Panel 017 → Helga → crouching pose.
 
-**Task:** WITCH-P017-HELGA-CROUCH-001
+**Task:** WITCH-P017-HELGA-CROUCH-001.
 
 Key rule earned:
 **Panel decision is not character canon.**
@@ -40,17 +40,17 @@ Key rule earned:
 **Checkpoint:** PASS
 
 Verified chain:
-request → task → character → candidate asset → decision → project/panel state → handoff
+request → task → character → candidate asset → decision → project/panel state → handoff.
 
 Verified status distinction:
-GENERATED ≠ ACCEPTED_FOR_PROJECT ≠ CANONICAL_FOR_CHARACTER ≠ REUSABLE
+GENERATED ≠ ACCEPTED_FOR_PROJECT ≠ CANONICAL_FOR_CHARACTER ≠ REUSABLE.
 
 ### TEST 4 — Cross-project reuse
 **Scenario:** TEST_PROJECT_B / Panel 003 reuses HELGA-CROUCH-CANDIDATE-03.
 
-**Task:** TESTB-P003-HELGA-REUSE-001
+**Task:** TESTB-P003-HELGA-REUSE-001.
 
-**Checkpoint:** PASS
+**Checkpoint:** PASS.
 
 Verified:
 - origin remains attached to the asset;
@@ -60,10 +60,6 @@ Verified:
 - no global asset registry was required.
 
 ### TEST 5 — Asset lifecycle / reuse revocation
-**Scenario:** TEST_PROJECT_C / Panel 001 attempts to reuse HELGA-CROUCH-CANDIDATE-03 after reuse is no longer recommended.
-
-**Task:** TESTC-P001-HELGA-OLD-ASSET-001
-
 **Checkpoint:** PASS for tested scenario.
 
 Verified:
@@ -75,20 +71,19 @@ Verified:
 - character canon and provenance remain unchanged.
 
 ### TEST 6 — Asset lifecycle / reuse reversal
-**Scenario:** HELGA-CROUCH-CANDIDATE-03 moves REUSABLE = NO back to REUSABLE = YES, then TEST_PROJECT_D / Panel 001 makes a new use.
+**Checkpoint:** PASS for tested scenario.
 
-**Task:** TESTD-P001-HELGA-REUSE-001
-
-**Checkpoint:** PASS for tested scenario
+Verified:
+- HELGA-CROUCH-CANDIDATE-03 moved REUSABLE = NO → REUSABLE = YES;
+- the previous lifecycle decision remained unchanged;
+- TEST_PROJECT_D became a new consumer;
+- historical consumers and provenance remained unchanged.
 
 Key rule earned:
-**A reusable asset may move YES → NO → YES without rewriting prior lifecycle decisions or historical consumer decisions, provided the current asset record carries the current recommendation and lifecycle changes are recorded as separate focused decisions.**
+**A reusable asset may move YES → NO → YES without rewriting prior lifecycle decisions or historical consumer decisions, provided the current asset record carries the current recommendation and lifecycle changes are recorded separately.**
 
 ### TEST 7 — Multiple independent consumers
-
-**Scenario:** HELGA-CROUCH-CANDIDATE-03 is consumed independently by TEST_PROJECT_E / Panel 002, TEST_PROJECT_F / Panel 011, and TEST_PROJECT_G / Panel 004.
-
-**Checkpoint: PARTIAL**
+**Checkpoint:** PARTIAL.
 
 Verified:
 - seven known consumer scenarios can be represented without duplicate asset records;
@@ -99,110 +94,99 @@ Verified:
 - lifecycle decisions remain separate from consumption;
 - the asset record's Related records plus consumer-local links allow reconstruction of the tested consumer set.
 
-Discoverability observation:
-- the available GitHub connector search returned no results for the tested asset and broad terms;
-- explicit repository links still allowed reconstruction;
+Boundary:
+- the available GitHub connector search returned zero results for the tested asset and broad terms;
+- exhaustive repository-search adequacy is therefore not proven;
 - this did not demonstrate a data-model failure or justify a consumer registry.
 
 ### TEST 8 — Replacement / supersession
+**Checkpoint:** PASS for tested scenario.
 
-**Scenario:** TEST_PROJECT_H / Panel 001 first accepts HELGA-CROUCH-CANDIDATE-03 and later replaces it with a newly created HELGA-CROUCH-CANDIDATE-04 because a consumer-specific review prefers an improved variant.
+Verified:
+- TEST_PROJECT_H / Panel 001 initially accepted HELGA-CROUCH-CANDIDATE-03;
+- a later consumer-specific review accepted HELGA-CROUCH-CANDIDATE-04;
+- the initial decision remained unchanged;
+- the replacement reason is durable;
+- both assets retain their own provenance;
+- the replacement did not change Asset A's REUSABLE state and did not mark Asset A globally REPLACED/SUPERSEDED.
 
-**Checkpoint: PASS for tested scenario**
+Key rule earned:
+**Consumer-specific replacement is distinct from asset lifecycle replacement.**
 
-#### Verified
+No supersession registry or global replacement state was justified.
 
-The repository can express:
+### TEST 9 — Physical binary asset
+**Checkpoint:** PASS for tested scenario.
 
-H / Panel 001
-→ initial decision
-→ Asset A (HELGA-CROUCH-CANDIDATE-03)
-→ replacement decision
-→ Asset B (HELGA-CROUCH-CANDIDATE-04)
-→ current decision
+Verified:
+- HELGA-CROUCH-CANDIDATE-04 has a real Git-tracked 1×1 PNG;
+- the asset record links to it with an ordinary repository path;
+- same-content copy and changed-content fixture did not automatically create new asset identities;
+- missing physical file did not erase the asset record;
+- Asset ID, file path, and Git blob/content identity are distinct.
 
-The initial decision remains unchanged. The current decision is separate. The replacement reason is a separate durable fact.
+Key rule earned:
+**For the tested one-asset/one-primary-binary case, an explicit path from the asset record to a real Git-tracked binary is sufficient.**
 
-Asset A keeps its original WITCH provenance. Asset B has its own origin in TEST_PROJECT_H / Panel 001. Neither asset becomes canonical for Helga automatically.
+Still open:
+- persistent content identifiers;
+- relocation;
+- multiple binaries/assets sharing binaries;
+- external binary storage;
+- large-scale binary discovery.
 
-The replacement is consumer-specific. Asset A is not globally marked REPLACED and its REUSABLE state is not changed by this event.
+### TEST 10 — New-sister reconstruction
+**Checkpoint:** PASS — FOR TESTED SCOPE.
 
-#### Discoverability
+Reported result:
+A fresh sister reconstructed the tested architecture using LIVING HANDOFF + EXPLICIT REPOSITORY EVIDENCE.
 
-The tested H → A → replacement → B chain is recoverable through explicit links among the panel state, initial decision, replacement decision, current decision, and both asset records.
+Boundary:
+- exhaustive discovery was not proven;
+- the main branch currently lacks a dedicated Test #10 focused handoff/result artifact, so the detailed reconstruction procedure is not independently re-auditable from a dedicated document.
 
-Exhaustive repository-search adequacy remains unproven because the search interface used in Test #7 returned zero results.
+No new architecture was added for this documentation gap.
 
-#### Key rule earned
+### TEST 11 — Architecture freeze candidate
+**Checkpoint:** FREEZE CANDIDATE IS READY.
 
-**A consumer-specific replacement can be represented as a new decision/event plus a new asset record, while preserving the historical consumption decision and both assets' provenance.**
+Test #11 audited the accumulated evidence rather than adding a new architecture.
 
-No global supersession entity was required for the tested scenario.
+#### Minimal confirmed core
 
-#### What was deliberately not added
+1. Explicit repository records and links are sufficient for the tested project-memory scenarios.
+2. The tested production chain is:
+   request → task → character → candidate asset → decision → project/panel state → handoff.
+3. Asset identity is distinct from character state, panel decision, provenance, consumer use, physical file path, and Git blob/content identity.
+4. Current state and historical facts remain separate; current values can change without rewriting earlier decisions.
+5. Asset reuse lifecycle is distinct from historical consumer decisions.
+6. Consumer-specific replacement is distinct from global asset supersession.
+7. A real binary can be linked from an asset record by an explicit repository path in the tested one-asset/one-primary-binary scenario.
+8. Handoffs transfer context, not automatic authority.
+9. No global registry/graph/database/API/synchronization/automatic propagation/new lifecycle vocabulary was justified by the tested scenarios.
 
-- replacement registry;
-- supersession registry;
-- global REPLACED/SUPERSEDED lifecycle state;
-- graph;
-- event sourcing;
-- API;
-- automatic propagation;
-- automatic canonical promotion.
+#### Explicit boundary
 
-#### Open questions
+The freeze does not cover:
+- exhaustive discovery;
+- arbitrary-scale search/reverse navigation;
+- lifecycle governance at scale;
+- many sequential lifecycle changes;
+- many sequential replacements;
+- global supersession/retirement;
+- persistent content identifiers;
+- relocation/multiple-binary semantics;
+- external binary storage;
+- large-scale binary governance.
 
-- many sequential replacements / chronology;
-- consumer-specific replacement versus global asset retirement/supersession;
-- larger-scale discoverability;
-- whether a dedicated replacement record type becomes useful;
-- physical binary asset storage.
+The candidate freeze is stable but reversible by new evidence.
 
 ## Next checkpoints
 
-### TEST 9 — Physical binary asset
+No broad Test #12 is required by Test #11.
 
-**Scenario:** HELGA-CROUCH-CANDIDATE-04 receives a real Git-tracked 1×1 PNG and an explicit asset-record link to that file.
+If a next test is desired, the smallest useful test is:
 
-**Checkpoint: PASS for tested scenario**
+**TEST 12 — ONE OPEN BOUNDARY ONLY**
 
-Verified:
-- asset record → physical binary is represented by an ordinary repository path;
-- the binary actually exists in Git;
-- TEST_PROJECT_H / Panel 001 → current decision → Asset B → physical binary is reconstructable;
-- identical binary content may exist at two paths without requiring a second asset record;
-- changed binary content does not automatically require a second asset record;
-- removing the current physical path does not remove the asset record or its historical provenance;
-- Git's own blob/content identity is distinct from repository path and asset identity.
-
-Minimal rule earned:
-**For the tested one-asset/one-primary-binary case, an explicit path from the asset record to a real Git-tracked binary is sufficient.**
-
-No binary registry, blob registry, manifest, artifact database, asset/file version model, automatic checksum field, or global missing/orphan/broken status was justified.
-
-Temporary observation branch: test9-missing-binary-observation demonstrated missing-file and changed-target behavior without altering the accepted main-branch state.
-
-Still open:
-- persistent content-identifier policy;
-- binary relocation;
-- many binaries per asset;
-- many assets sharing one binary;
-- external binary storage;
-- large-scale reverse discovery.
-
-
-### TEST 10 — New-sister reconstruction
-A fresh sister receives only repository access and the test protocol. She must reconstruct current architecture, historical test findings, current open questions, and where to continue.
-
-### TEST 11 — Architecture freeze candidate
-Only after the previous tests, decide which semantics are stable enough to propose for production repositories.
-
-## Rules for every future test
-
-- Test the smallest real scenario.
-- Prefer existing fields and documents.
-- Do not introduce a global database, graph, event sourcing, registry, automation, or API unless a test demonstrates the need.
-- Preserve historical facts.
-- Never let a handoff silently transfer authority.
-- Distinguish observation, inference, hypothesis, and accepted architecture.
-- Record unresolved questions rather than solving them speculatively.
+Choose exactly one existing open question (preferably many-sequential-replacements OR binary relocation/content identity) and construct the smallest real scenario that could falsify or extend the frozen core. Do not test scale and governance simultaneously.
