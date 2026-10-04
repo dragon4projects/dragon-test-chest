@@ -51,3 +51,9 @@ These are deliberately real documents from the Cloud Library plus architecture-t
 - [HELGA crouch replacement — Test #8, 2026-10-04](cross-project/HELGA_CROUCH_REPLACEMENT_TEST8_HANDOFF_2026-10-04.md)
   - Focused replacement handoff for TEST_PROJECT_H / Panel 001.
   - Records the initial use of HELGA-CROUCH-CANDIDATE-03, its consumer-specific replacement by HELGA-CROUCH-CANDIDATE-04, provenance boundaries, lifecycle separation and open supersession questions.
+
+## TEST 9 / PHYSICAL BINARY
+
+- [HELGA crouch physical binary — Test #9, 2026-10-04](cross-project/HELGA_CROUCH_PHYSICAL_BINARY_TEST9_HANDOFF_2026-10-04.md)
+  - Focused Test #9 handoff for HELGA-CROUCH-CANDIDATE-04.
+  - Records the real Git-tracked binary, same-content copy, modified binary fixture, missing-file observation branch, identity boundaries, and the minimal conclusion that an explicit asset → physical-file path is sufficient for the tested scenario.
