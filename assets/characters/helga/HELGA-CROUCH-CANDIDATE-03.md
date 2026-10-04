@@ -50,7 +50,12 @@ After the reversal:
 - TEST_PROJECT_F / Panel 011 — accepted new consuming use
 - TEST_PROJECT_G / Panel 004 — accepted new consuming use
 
-These records remain historical production facts and are not rewritten by the current reuse decision.
+Test #8 adds one further historical consumer event:
+- TEST_PROJECT_H / Panel 001 — initially ACCEPTED_FOR_USE, then replaced locally by HELGA-CROUCH-CANDIDATE-04
+
+The TEST_PROJECT_H replacement does not change the historical fact that this asset was initially accepted there.
+
+These records remain historical production facts and are not rewritten by the current reuse decision or by the later consumer-specific replacement.
 
 ## Related records
 
@@ -71,5 +76,7 @@ These records remain historical production facts and are not rewritten by the cu
 - TEST_PROJECT_F decision: projects/test_project_f/panels/011/decisions/HELGA_REUSE_ASSET_DECISION.md
 - TEST_PROJECT_G request: correspondence/requests/test_project_g/TESTG-P004-HELGA-REUSE-001.md
 - TEST_PROJECT_G decision: projects/test_project_g/panels/004/decisions/HELGA_REUSE_ASSET_DECISION.md
+- TEST_PROJECT_H initial decision: projects/test_project_h/panels/001/decisions/HELGA_INITIAL_ASSET_DECISION.md
+- TEST_PROJECT_H replacement decision: projects/test_project_h/panels/001/decisions/HELGA_ASSET_REPLACEMENT_DECISION.md
 
 The actual image is intentionally not stored.
