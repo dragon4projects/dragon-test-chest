@@ -149,3 +149,72 @@ Many sequential replacements may make chronology harder to read. A future test m
 
 ### Next minimal test
 TEST 9 — PHYSICAL BINARY ASSET.
+
+## 2026-10-04 — Test 9 — Physical binary asset
+
+### Scenario
+
+HELGA-CROUCH-CANDIDATE-04 was connected to a real 1×1 PNG stored in the repository:
+
+assets/characters/helga/binary/HELGA-CROUCH-CANDIDATE-04.png
+
+The asset record was updated with the explicit physical-file path.
+
+### Observed
+
+- The binary exists as a real Git-tracked object.
+- The existing asset record can point directly to the physical file with an ordinary repository path.
+- TEST_PROJECT_H / Panel 001 → current decision → HELGA-CROUCH-CANDIDATE-04 → physical binary is reconstructable.
+- A second path containing identical binary content has the same Git blob SHA as the primary file.
+- A modified binary fixture has a different Git blob SHA.
+- Neither the identical copy nor the changed binary was automatically promoted to a new asset identity.
+- On temporary branch test9-missing-binary-observation, the primary binary path was removed while the asset record remained.
+- On that same temporary branch, the asset record was pointed to the modified binary fixture without changing the Asset ID. This was an experiment only and was not accepted as main-branch state.
+
+### Identity boundary
+
+Test #9 demonstrated:
+
+ASSET IDENTITY ≠ FILE PATH ≠ GIT BLOB/CONTENT IDENTITY
+
+The asset identity remains the asset record / Asset ID. The repository path identifies a physical location. Git's blob identity identifies content. These layers should not be conflated.
+
+### Architecture change earned
+
+For the tested one-asset/one-primary-binary case, an explicit path from the asset record to a real Git-tracked binary is sufficient.
+
+The architecture does not currently need a separate binary registry or manually duplicated content identifier in the asset record.
+
+A missing physical file does not erase the asset record, provenance, or historical decisions.
+
+A changed binary does not automatically imply a new asset.
+
+### What was deliberately not added
+
+- binary registry;
+- blob registry;
+- manifest;
+- artifact database;
+- asset version entity;
+- file version entity;
+- automatic checksum/hash field;
+- global MISSING/BROKEN/ORPHANED status;
+- automatic synchronization;
+- external binary store.
+
+### Inference
+
+Git already supplies physical content identity and history at the repository layer. The test did not demonstrate a need for the architecture to duplicate that mechanism.
+
+A plain path is sufficient for the tested forward link. Reverse semantic discovery from a content blob alone is not proven; the explicit repository path remains the semantic bridge to the asset record.
+
+### Hypotheses
+
+- persistent content identifiers may become useful at larger scale or across storage boundaries;
+- binary relocation may expose a need to distinguish path change from content change;
+- many binaries per asset and many assets sharing one binary may require additional semantics;
+- external binary storage may require a different link model.
+
+### Next minimal test
+
+TEST 10 — NEW-SISTER RECONSTRUCTION.
