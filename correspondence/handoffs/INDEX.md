@@ -45,3 +45,9 @@ These are deliberately real documents from the Cloud Library plus architecture-t
 - [HELGA-CROUCH-CANDIDATE-03 — multiple consumers, Test #7, 2026-10-03](cross-project/HELGA_CROUCH_MULTIPLE_CONSUMERS_TEST7_HANDOFF_2026-10-03.md)
   - Focused Test #7 handoff.
   - Records seven known consumer scenarios, the discoverability observation, current bounded conclusion, and open questions.
+
+## TEST 8 / CROSS-PROJECT
+
+- [HELGA crouch replacement — Test #8, 2026-10-04](cross-project/HELGA_CROUCH_REPLACEMENT_TEST8_HANDOFF_2026-10-04.md)
+  - Focused replacement handoff for TEST_PROJECT_H / Panel 001.
+  - Records the initial use of HELGA-CROUCH-CANDIDATE-03, its consumer-specific replacement by HELGA-CROUCH-CANDIDATE-04, provenance boundaries, lifecycle separation and open supersession questions.
