@@ -31,7 +31,7 @@ HELGA-CROUCH-CANDIDATE-03 could remain historically used while its current REUSA
 Current reuse recommendation and historical reuse are different facts.
 
 ### Open question
-Ownership of later asset-level reuse recommendations remains unresolved.
+Ownership of later cross-project reuse recommendations remains unresolved.
 
 ## 2026-10-03 — Test 6 — Asset lifecycle / reuse reversal
 
@@ -89,17 +89,12 @@ The scenario required only:
 - explicit links from the panel and asset records;
 - one focused handoff and index entry.
 
-No existing historical decision was edited.
-
 ### Architecture rule earned
 **Consumer replacement is distinct from asset lifecycle replacement.**
 
 For the tested case, an asset does not need a global REPLACED/SUPERSEDED state merely because one consumer moved from it to another asset.
 
-A replacement can be represented as a new durable decision/fact while the old consumption remains historically true.
-
 ### Provenance result
-
 Asset A:
 - origin = WITCH / Panel 017 / WITCH-P017-HELGA-CROUCH-001.
 
@@ -109,15 +104,12 @@ Asset B:
 Replacement did not change either origin.
 
 ### Lifecycle separation
-
 The replacement did not imply:
 - REUSABLE = NO;
 - deleted;
 - invalid;
 - canonical;
 - globally superseded.
-
-These remain independent questions.
 
 ### What was deliberately not added
 - supersession registry;
@@ -153,15 +145,12 @@ TEST 9 — PHYSICAL BINARY ASSET.
 ## 2026-10-04 — Test 9 — Physical binary asset
 
 ### Scenario
-
 HELGA-CROUCH-CANDIDATE-04 was connected to a real 1×1 PNG stored in the repository:
-
 assets/characters/helga/binary/HELGA-CROUCH-CANDIDATE-04.png
 
 The asset record was updated with the explicit physical-file path.
 
 ### Observed
-
 - The binary exists as a real Git-tracked object.
 - The existing asset record can point directly to the physical file with an ordinary repository path.
 - TEST_PROJECT_H / Panel 001 → current decision → HELGA-CROUCH-CANDIDATE-04 → physical binary is reconstructable.
@@ -172,15 +161,10 @@ The asset record was updated with the explicit physical-file path.
 - On that same temporary branch, the asset record was pointed to the modified binary fixture without changing the Asset ID. This was an experiment only and was not accepted as main-branch state.
 
 ### Identity boundary
-
 Test #9 demonstrated:
-
-ASSET IDENTITY ≠ FILE PATH ≠ GIT BLOB/CONTENT IDENTITY
-
-The asset identity remains the asset record / Asset ID. The repository path identifies a physical location. Git's blob identity identifies content. These layers should not be conflated.
+ASSET IDENTITY ≠ FILE PATH ≠ GIT BLOB/CONTENT IDENTITY.
 
 ### Architecture change earned
-
 For the tested one-asset/one-primary-binary case, an explicit path from the asset record to a real Git-tracked binary is sufficient.
 
 The architecture does not currently need a separate binary registry or manually duplicated content identifier in the asset record.
@@ -190,7 +174,6 @@ A missing physical file does not erase the asset record, provenance, or historic
 A changed binary does not automatically imply a new asset.
 
 ### What was deliberately not added
-
 - binary registry;
 - blob registry;
 - manifest;
@@ -203,18 +186,95 @@ A changed binary does not automatically imply a new asset.
 - external binary store.
 
 ### Inference
-
 Git already supplies physical content identity and history at the repository layer. The test did not demonstrate a need for the architecture to duplicate that mechanism.
 
-A plain path is sufficient for the tested forward link. Reverse semantic discovery from a content blob alone is not proven; the explicit repository path remains the semantic bridge to the asset record.
-
 ### Hypotheses
-
 - persistent content identifiers may become useful at larger scale or across storage boundaries;
 - binary relocation may expose a need to distinguish path change from content change;
 - many binaries per asset and many assets sharing one binary may require additional semantics;
 - external binary storage may require a different link model.
 
 ### Next minimal test
-
 TEST 10 — NEW-SISTER RECONSTRUCTION.
+
+## 2026-10-04 — Test 10 — New-sister reconstruction
+
+### Result
+**PASS — FOR TESTED SCOPE.**
+
+The test execution reported that a fresh sister reconstructed the tested architecture using:
+
+LIVING HANDOFF
++
+EXPLICIT REPOSITORY EVIDENCE.
+
+### Bounded interpretation
+The result supports semantic reconstruction of the tested architecture. It does not prove exhaustive repository discovery.
+
+The main branch currently has no dedicated Test #10 focused handoff/result artifact. This is a documentation gap and does not justify adding a registry or discovery subsystem.
+
+No historical Test #10 conclusion is rewritten.
+
+## 2026-10-04 — Test 11 — Architecture freeze candidate
+
+### Audit result
+**PASS.**
+
+Test #11 did not add a new architecture. It audited the accumulated evidence and separated:
+
+- CONFIRMED ARCHITECTURE;
+- explicit boundaries;
+- OPEN QUESTIONS;
+- NOT PROVEN hypotheses;
+- NEGATIVE EVIDENCE.
+
+### Candidate freeze verdict
+**FREEZE CANDIDATE IS READY.**
+
+### Minimal confirmed core
+- explicit repository records and links are sufficient for the tested project-memory scenarios;
+- the tested production chain is REQUEST → TASK → CHARACTER → CANDIDATE ASSET → DECISION → PROJECT/PANEL STATE → HANDOFF;
+- asset identity is distinct from character state, panel decision, origin/consumption, file path, and Git blob/content identity;
+- current state and historical fact remain separate;
+- reuse lifecycle remains distinct from consumer history;
+- consumer-specific replacement remains distinct from global asset supersession;
+- an explicit path is sufficient to connect an asset record to a real Git-tracked binary in the tested one-asset/one-primary-binary case;
+- handoffs transfer context, not automatic authority.
+
+### Not frozen
+- exhaustive discovery;
+- arbitrary-scale reverse navigation;
+- lifecycle governance at scale;
+- many sequential lifecycle changes;
+- many sequential replacements;
+- global supersession/retirement;
+- persistent content identifiers;
+- relocation/multiple-binary semantics;
+- external binary storage;
+- large-scale binary governance.
+
+### Negative evidence retained
+Tests did not justify:
+- global asset registry;
+- consumer registry;
+- supersession/replacement registry;
+- graph/database/API;
+- synchronization;
+- automatic propagation;
+- automatic canonical promotion;
+- new global lifecycle vocabulary.
+
+This is evidence of non-necessity for the tested scenarios, not a permanent prohibition.
+
+### Freeze property
+The candidate freeze is:
+**STABLE BUT REVERSIBLE BY NEW EVIDENCE.**
+
+A future test may weaken, split, extend, or replace a rule without rewriting Tests #1–#11.
+
+### Next minimal test
+No broad Test #12 is required. If further validation is desired, test exactly one existing open boundary, preferably:
+- many sequential replacements, OR
+- binary relocation/content identity.
+
+Do not combine scale, governance, discovery, and storage in one experiment.
