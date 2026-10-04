@@ -2,7 +2,7 @@
 
 **Repository:** dragon4projects/dragon-test-chest
 **Purpose:** durable laboratory record for building and testing the GitHub-based project-memory architecture.
-**Status:** active experiment; Test #11 produced a candidate freeze of the minimal confirmed core.
+**Status:** active experiment; Test #11 produced a candidate freeze of the minimal confirmed core; Test #12 added a bounded binary-relocation result.
 
 ## Working principle
 
@@ -142,8 +142,10 @@ Reported result:
 A fresh sister reconstructed the tested architecture using LIVING HANDOFF + EXPLICIT REPOSITORY EVIDENCE.
 
 Boundary:
-- exhaustive discovery was not proven;
-- the main branch currently lacks a dedicated Test #10 focused handoff/result artifact, so the detailed reconstruction procedure is not independently re-auditable from a dedicated document.
+- exhaustive discovery was not proven.
+
+Documentation gap closure:
+A dedicated focused Test #10 handoff has now been added to the repository. It records the bounded execution result and its reconstruction method without claiming exhaustive discovery.
 
 No new architecture was added for this documentation gap.
 
@@ -181,12 +183,51 @@ The freeze does not cover:
 
 The candidate freeze is stable but reversible by new evidence.
 
+### TEST 12 — Binary relocation / content identity
+**Checkpoint:** PASS — FOR TESTED REPOSITORY-LOCAL SCENARIO.
+
+**Scenario:**
+The primary binary for HELGA-CROUCH-CANDIDATE-04 was moved from:
+`assets/characters/helga/binary/HELGA-CROUCH-CANDIDATE-04.png`
+to:
+`assets/characters/helga/binary/relocated/HELGA-CROUCH-CANDIDATE-04.png`.
+
+The destination was byte-identical and resolved to the same Git blob SHA:
+`62a5f8f47fec02344e5bf9061888262f677cf5d6`.
+
+The asset record was explicitly updated to the new path and the old path was removed on the test branch.
+
+Verified:
+- Asset ID remained unchanged;
+- provenance remained unchanged;
+- consumer/replacement history remained unchanged;
+- lifecycle and character canon remained unchanged;
+- file path changed;
+- Git blob/content identity did not change.
+
+Key rule strengthened:
+**File path is a mutable locator, not the semantic Asset identity.**
+
+For the tested repository-local relocation scenario, no relocation entity, binary registry, or persistent content-ID field was needed.
+
+Still open:
+- modified binary content semantics;
+- multiple binaries per asset;
+- multiple assets sharing one binary;
+- cross-repository relocation;
+- external storage;
+- persistent content-ID policy;
+- large-scale binary governance.
+
 ## Next checkpoints
 
-No broad Test #12 is required by Test #11.
+No broad Test #13 is required by Test #12.
 
-If a next test is desired, the smallest useful test is:
+If further validation is desired, choose exactly one remaining open boundary and construct the smallest real scenario that could falsify or extend the frozen core.
 
-**TEST 12 — ONE OPEN BOUNDARY ONLY**
+Smallest candidates now are:
 
-Choose exactly one existing open question (preferably many-sequential-replacements OR binary relocation/content identity) and construct the smallest real scenario that could falsify or extend the frozen core. Do not test scale and governance simultaneously.
+1. **MANY SEQUENTIAL REPLACEMENTS** — test A → B → C → D for one consumer and inspect chronology/readability.
+2. **CROSS-REPOSITORY / EXTERNAL-STORAGE RELOCATION** — test whether the current path + Git identity model still suffices when the binary crosses a repository/storage boundary.
+
+Do not combine scale, governance, discovery, storage and replacement in one experiment.

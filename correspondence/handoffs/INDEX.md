@@ -57,3 +57,15 @@ These are deliberately real documents from the Cloud Library plus architecture-t
 - [HELGA crouch physical binary — Test #9, 2026-10-04](cross-project/HELGA_CROUCH_PHYSICAL_BINARY_TEST9_HANDOFF_2026-10-04.md)
   - Focused Test #9 handoff for HELGA-CROUCH-CANDIDATE-04.
   - Records the real Git-tracked binary, same-content copy, modified binary fixture, missing-file observation branch, identity boundaries, and the minimal conclusion that an explicit asset → physical-file path is sufficient for the tested scenario.
+
+## TEST 10 / ARCHITECTURE
+
+- [New-sister reconstruction — Test #10, 2026-10-04](cross-project/ARCHITECTURE_TEST10_NEW_SISTER_RECONSTRUCTION_HANDOFF_2026-10-04.md)
+  - Focused durable record of the bounded Test #10 execution result.
+  - Records the successful reconstruction using living handoff + explicit repository evidence and preserves the exhaustive-discovery limitation.
+
+## TEST 12 / BINARY RELOCATION
+
+- [HELGA crouch binary relocation — Test #12, 2026-10-04](cross-project/HELGA_CROUCH_BINARY_RELOCATION_TEST12_HANDOFF_2026-10-04.md)
+  - Focused Test #12 handoff.
+  - Records the same-content relocation, unchanged Git blob SHA, mutable file locator, unchanged Asset ID, and bounded conclusion that no new relocation entity/content-ID layer was required for this repository-local scenario.
