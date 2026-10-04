@@ -161,7 +161,35 @@ No global supersession entity was required for the tested scenario.
 ## Next checkpoints
 
 ### TEST 9 — Physical binary asset
-Goal: test storing the actual PNG in GitHub and connecting it unambiguously to the durable asset record.
+
+**Scenario:** HELGA-CROUCH-CANDIDATE-04 receives a real Git-tracked 1×1 PNG and an explicit asset-record link to that file.
+
+**Checkpoint: PASS for tested scenario**
+
+Verified:
+- asset record → physical binary is represented by an ordinary repository path;
+- the binary actually exists in Git;
+- TEST_PROJECT_H / Panel 001 → current decision → Asset B → physical binary is reconstructable;
+- identical binary content may exist at two paths without requiring a second asset record;
+- changed binary content does not automatically require a second asset record;
+- removing the current physical path does not remove the asset record or its historical provenance;
+- Git's own blob/content identity is distinct from repository path and asset identity.
+
+Minimal rule earned:
+**For the tested one-asset/one-primary-binary case, an explicit path from the asset record to a real Git-tracked binary is sufficient.**
+
+No binary registry, blob registry, manifest, artifact database, asset/file version model, automatic checksum field, or global missing/orphan/broken status was justified.
+
+Temporary observation branch: test9-missing-binary-observation demonstrated missing-file and changed-target behavior without altering the accepted main-branch state.
+
+Still open:
+- persistent content-identifier policy;
+- binary relocation;
+- many binaries per asset;
+- many assets sharing one binary;
+- external binary storage;
+- large-scale reverse discovery.
+
 
 ### TEST 10 — New-sister reconstruction
 A fresh sister receives only repository access and the test protocol. She must reconstruct current architecture, historical test findings, current open questions, and where to continue.
