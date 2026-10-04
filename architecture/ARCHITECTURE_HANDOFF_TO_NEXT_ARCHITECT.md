@@ -230,19 +230,76 @@ A global supersession entity is not justified by this test.
 - projects/test_project_h/panels/001/decisions/HELGA_CURRENT_ASSET_DECISION.md
 - correspondence/handoffs/cross-project/HELGA_CROUCH_REPLACEMENT_TEST8_HANDOFF_2026-10-04.md
 
+
+## 10A. Test #9 — PHYSICAL BINARY ASSET — PASS FOR TESTED SCENARIO
+
+### Scenario
+
+HELGA-CROUCH-CANDIDATE-04 was given a real 1×1 PNG in the repository:
+assets/characters/helga/binary/HELGA-CROUCH-CANDIDATE-04.png
+
+The asset record explicitly links to that physical file.
+
+### Observed facts
+
+- The binary is a real Git-tracked file, not a placeholder.
+- The asset record → physical binary relation is explicit and reconstructable.
+- TEST_PROJECT_H / Panel 001 → current decision → HELGA-CROUCH-CANDIDATE-04 → physical binary is reconstructable.
+- A copy under another path has the same Git blob SHA as the primary binary.
+- A modified binary fixture has a different Git blob SHA.
+- The same-content copy did not require a second asset record.
+- The changed binary did not automatically require a second asset record.
+- On temporary branch test9-missing-binary-observation, the primary binary path was removed while the asset record remained present.
+- The same temporary branch also demonstrated that the asset record can be pointed at another existing binary path without changing its Asset ID; this was not accepted as a production state.
+
+### Identity boundary
+
+The test distinguishes:
+
+ASSET IDENTITY ≠ FILE PATH ≠ GIT BLOB/CONTENT IDENTITY
+
+A path identifies a repository location. Git also has a content object identity. Neither is automatically the semantic asset identity.
+
+### Minimal rule earned
+
+For the tested one-asset/one-primary-binary scenario, an explicit repository path from the asset record to a real binary is sufficient. No extra binary registry or manually duplicated content identifier was required.
+
+### Missing / changed binary
+
+A missing physical file does not erase the asset record, provenance, or historical decisions. It does mean that the current path no longer resolves to a present file.
+
+A changed binary does not automatically create a new asset. Whether changed content constitutes a new asset remains a semantic question and is not proven by this test.
+
+### What was not needed
+
+No binary registry, blob registry, manifest, artifact database, asset version entity, file version entity, automatic checksum/hash field, or global missing/orphan/broken status was introduced.
+
+### Focused handoff
+
+correspondence/handoffs/cross-project/HELGA_CROUCH_PHYSICAL_BINARY_TEST9_HANDOFF_2026-10-04.md
+
+### Test #9 open questions
+
+- production policy for persistent content identifiers remains unproven;
+- binary relocation and many-binaries-per-asset remain untested;
+- many-assets-per-binary remains untested;
+- external binary storage remains untested;
+- large-scale reverse discovery remains open.
+
 ## 10. Current open questions
 
 - lifecycle governance / authority;
 - discoverability at much larger consumer counts;
 - chronology of many lifecycle changes;
 - many sequential replacements / supersessions;
-- physical binary assets;
 - reconstruction by a new sister from repository alone;
+- whether a production asset record should persist a content identifier beyond its explicit path;
+- relocation/multiple-binary semantics at larger scale;
 - whether any global supersession concept is ever justified.
 
 ## 11. Planned tests
 
-- Test 9: physical binary asset
+- Test 9: physical binary asset — completed PASS for tested scenario
 - Test 10: reconstruction by a new sister
 - Test 11: architecture freeze candidate
 
@@ -276,9 +333,10 @@ Tests completed:
 - Test 6 — asset lifecycle / reuse reversal
 - Test 7 — multiple independent consumers
 - Test 8 — replacement / supersession
+- Test 9 — physical binary asset
 
 Current conclusion:
-The tested architecture can express a consumer-specific replacement from Asset A to Asset B while preserving the old consumer decision, both origins, current consumption, replacement reason, and character-canon boundary without adding a supersession registry or global lifecycle state.
+The tested architecture can express a consumer-specific replacement from Asset A to Asset B while preserving the old consumer decision, both origins, current consumption, replacement reason, and character-canon boundary without adding a supersession registry or global lifecycle state. Test #9 additionally demonstrated that a real physical binary can be attached to an asset record by an explicit repository path without introducing a binary-management layer.
 
 Immediate next action:
-Run TEST 9 — PHYSICAL BINARY ASSET.
+Run TEST 10 — NEW-SISTER RECONSTRUCTION.
