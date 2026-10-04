@@ -10,8 +10,7 @@ This repository is an architecture laboratory, not a production repository.
 
 The task is to discover the smallest durable project-memory architecture that lets rotating sisters reconstruct and continue real work.
 
-Do NOT design a beautiful final system in advance.
-Each architectural rule must be earned by a real test or explicitly marked as a hypothesis.
+Do NOT design a beautiful final system in advance. Each architectural rule must be earned by a real test or explicitly marked as a hypothesis.
 
 Working model:
 - Chat = working memory.
@@ -39,6 +38,7 @@ Reverse navigation is also required: a new sister must be able to start from an 
 - Historical facts must not be rewritten merely because current state changes.
 - Project-specific decisions must not silently become global character canon.
 - A lifecycle change must not silently rewrite old consumers.
+- A consumer-specific replacement does not automatically become a global asset lifecycle state.
 
 ## 4. Asset state semantics currently proven
 
@@ -49,136 +49,206 @@ ACCEPTED_FOR_PROJECT
 CANONICAL_FOR_CHARACTER
 REUSABLE
 
-They must not be collapsed into one status.
-
-The tested lifecycle sequence now includes:
+The tested lifecycle sequence includes:
 
 PAST: REUSABLE=YES
 THEN: REUSABLE=NO
 CURRENT: REUSABLE=YES
 
-For Test #5, REUSABLE=NO meant:
-"Do not select this asset for a new production consuming task."
+For Test #5, REUSABLE=NO meant: “Do not select this asset for a new production consuming task.”
 
-For Test #6, REUSABLE=YES means:
-"The asset may be considered for a new production consuming task."
+For Test #6, REUSABLE=YES means: “The asset may be considered for a new production consuming task.”
 
-REUSABLE is a current reuse recommendation. It does NOT by itself mean:
-- deleted
-- invalid
-- canonical
-- historical consumers were wrong
-- old consumer decisions are automatically reopened
-- originating project authority changed
+REUSABLE does NOT by itself mean deleted, invalid, canonical, historical consumers were wrong, old decisions reopened, or originating authority changed.
 
-Historical reusable states may coexist with the current state through the asset record plus focused lifecycle decisions.
+## 5. Tests 1–4
 
-## 5. What Test #5 proved
+Test 1 established repository-first continuity and the authority boundary of handoffs.
 
-Test #5 = ASSET LIFECYCLE — REUSE REVOCATION.
+Test 2 established the minimal persistent production chain and earned the rule: panel decision is not character canon.
 
-Scenario:
-Helga crouching asset candidate-03 was accepted in WITCH Panel 017 and reused by TEST_PROJECT_B Panel 003. Later, reuse was stopped for new production.
+Test 3 established the full request → task → character → candidate asset → decision → project/panel state → handoff chain and the distinction GENERATED ≠ ACCEPTED_FOR_PROJECT ≠ CANONICAL_FOR_CHARACTER ≠ REUSABLE.
 
-Minimal changes were sufficient:
-1. asset record changed REUSABLE YES → NO and explicitly defined the current meaning;
-2. an asset-specific lifecycle decision recorded the decision and its non-revocations;
-3. TEST_PROJECT_C recorded a new attempt and rejected the old asset locally;
-4. a focused lifecycle handoff transferred the change;
-5. handoff index was updated.
+Test 4 established cross-project reuse: one asset can be consumed by another project without duplicating the asset record; ORIGIN ≠ CONSUMPTION.
 
-Old WITCH and TEST_PROJECT_B consumers remained valid.
-Origin and provenance remained unchanged.
-Helga canon remained unchanged.
-No global asset registry, graph, event sourcing, API, synchronization, or automatic propagation was needed.
+No global asset or consumer registry was required.
 
-Important open question:
-Who owns a later cross-project lifecycle recommendation is not yet universally defined.
+## 6. Test #5 — ASSET LIFECYCLE / REUSE REVOCATION — PASS
 
-## 6. What Test #6 proved
+HELGA-CROUCH-CANDIDATE-03 moved from reusable to not recommended for new production reuse.
 
-Test #6 = ASSET LIFECYCLE — REUSE REVERSAL.
+Observed:
+- current asset record changed to REUSABLE=NO;
+- separate lifecycle decision recorded the change;
+- TEST_PROJECT_C recorded a local REJECTED_FOR_NEW_USE decision;
+- old WITCH and TEST_PROJECT_B consumers remained unchanged;
+- origin and Helga canon remained unchanged.
 
-Scenario:
-HELGA-CROUCH-CANDIDATE-03 moved from REUSABLE=NO back to REUSABLE=YES. TEST_PROJECT_D / Panel 001 then made a new consuming request.
+No global registry, graph, event sourcing, API, synchronization, or automatic propagation was needed.
+
+Open question: governance/ownership of later cross-project lifecycle recommendations.
+
+## 7. Test #6 — ASSET LIFECYCLE / REUSE REVERSAL — PASS
+
+HELGA-CROUCH-CANDIDATE-03 moved REUSABLE=NO → REUSABLE=YES.
+
+Observed:
+- previous NO lifecycle decision was not rewritten;
+- separate reversal decision recorded the new state;
+- TEST_PROJECT_C remained historically REJECTED_FOR_NEW_USE;
+- TEST_PROJECT_D became a new accepted consumer;
+- prior consumers, provenance, and character canon remained unchanged.
+
+Proven rule:
+A reusable asset may move YES → NO → YES without rewriting prior lifecycle decisions or historical consumers, provided the asset record carries the current recommendation and lifecycle changes are durably recorded.
+
+Still open: lifecycle governance and discoverability at much larger scale.
+
+## 8. Test #7 — MULTIPLE INDEPENDENT CONSUMERS — PARTIAL
+
+Three additional consumers were added for HELGA-CROUCH-CANDIDATE-03:
+- TEST_PROJECT_E / Panel 002
+- TEST_PROJECT_F / Panel 011
+- TEST_PROJECT_G / Panel 004
+
+The tested set is seven known consumer scenarios: WITCH, TEST_PROJECT_B, TEST_PROJECT_C, TEST_PROJECT_D, TEST_PROJECT_E, TEST_PROJECT_F, TEST_PROJECT_G.
+
+Observed:
+- each consumer has request → panel state → decision → existing asset;
+- no duplicate asset record was required;
+- asset Related records plus explicit consumer links reconstructed the known scenarios;
+- the available GitHub connector search returned zero results for the tested asset and broad terms, so exhaustive search adequacy was not proven.
+
+This search observation is not proof of a repository data-model failure.
+
+No consumer registry, global index, graph, API, synchronization, or richer lifecycle vocabulary was justified.
+
+Focused handoff:
+correspondence/handoffs/cross-project/HELGA_CROUCH_MULTIPLE_CONSUMERS_TEST7_HANDOFF_2026-10-03.md
+
+## 9. Test #8 — REPLACEMENT / SUPERSESSION — PASS FOR TESTED SCENARIO
+
+### Scenario
+
+TEST_PROJECT_H / Panel 001 initially accepted HELGA-CROUCH-CANDIDATE-03.
+
+A later consumer-specific review found that an improved variant was preferable for this panel. A new asset record, HELGA-CROUCH-CANDIDATE-04, was created and accepted as the current asset.
+
+The initial decision was not edited.
 
 ### Observed facts
 
-- The asset record was changed to current REUSABLE=YES.
-- The earlier lifecycle decision for REUSABLE=NO was not rewritten.
-- A separate reversal lifecycle decision was created.
-- WITCH / Panel 017 remained accepted.
-- TEST_PROJECT_B / Panel 003 remained accepted.
-- TEST_PROJECT_C / Panel 001 remained historically REJECTED_FOR_NEW_USE.
-- TEST_PROJECT_D / Panel 001 recorded a new accepted use.
-- Provenance and Helga character canon remained unchanged.
-- The normal request → panel state → decision chain was sufficient for the new consumer.
+The repository now expresses:
+
+H / Panel 001
+→ initial decision
+→ HELGA-CROUCH-CANDIDATE-03
+→ replacement decision
+→ HELGA-CROUCH-CANDIDATE-04
+→ current decision
+
+The original asset remains historically accepted by H. Its WITCH origin remains unchanged.
+
+The new asset is a distinct asset record with its own origin: TEST_PROJECT_H / Panel 001. It is not automatically canonical for Helga.
+
+The replacement is consumer-specific. HELGA-CROUCH-CANDIDATE-03 was not globally marked REPLACED and its current REUSABLE state was not changed by this replacement.
+
+### History preservation
+
+The old decision remains:
+TEST_PROJECT_H / Panel 001 = ACCEPTED_FOR_USE with HELGA-CROUCH-CANDIDATE-03.
+
+The current decision is separate:
+TEST_PROJECT_H / Panel 001 = ACCEPTED_FOR_USE with HELGA-CROUCH-CANDIDATE-04.
+
+The replacement decision separately records why the consumer moved from A to B.
+
+No historical decision was rewritten.
+
+### Discoverability
+
+The tested relation H → A → replacement → B is recoverable through explicit links among:
+- H panel state;
+- initial decision;
+- replacement decision;
+- current decision;
+- Asset A Related records;
+- Asset B Related records.
+
+The available search interface remains unreliable as an exhaustive search mechanism because of the Test #7 zero-result observation. This did not prevent explicit record navigation in Test #8.
+
+### Provenance
+
+Asset A:
+- Origin: WITCH / Panel 017 / WITCH-P017-HELGA-CROUCH-001.
+
+Asset B:
+- Origin: TEST_PROJECT_H / Panel 001 / TESTH-P001-HELGA-REPLACEMENT-001.
+
+Replacement does not alter either origin.
+
+### Lifecycle separation
+
+The consumer replacement is separate from Asset A's REUSABLE lifecycle.
+
+The test did not introduce REPLACED, SUPERSEDED, RETIRED, VALID_FROM, VALID_TO, or any other global lifecycle vocabulary.
 
 ### Inference
 
-The existing boolean REUSABLE plus separate focused lifecycle decisions is sufficient for the tested YES → NO → YES reversal.
+For the tested one-consumer replacement scenario, an existing request/panel/decision record pattern plus one focused replacement decision is sufficient to preserve current consumption, historical consumption, replacement reason, and provenance.
 
-A lifecycle reversal does not require retroactive mutation of historical consumer decisions.
+A global supersession entity is not justified by this test.
 
-### Hypotheses / open questions
+### Hypotheses / still open
 
-- Many lifecycle changes may eventually create a chronology/discoverability problem. This test did not demonstrate one.
-- The architecture still does not prove a universal governance model for who is authorized to reverse a lifecycle recommendation.
+- Many sequential replacements may make chronology harder to read.
+- A future scenario may require distinguishing consumer-specific replacement from a global asset-level retirement/supersession.
+- It remains unproven whether a dedicated reusable replacement record type would become useful at scale.
+- Exhaustive repository-search adequacy remains unproven.
 
-### Accepted architecture after Test #6
+### What was not needed
 
-A reusable asset may move:
+- global asset registry;
+- consumer registry;
+- replacement registry;
+- graph database;
+- event sourcing;
+- API;
+- automatic index;
+- automatic propagation;
+- automatic canonical promotion;
+- global REPLACED/SUPERSEDED lifecycle state.
 
-REUSABLE=YES
-→ REUSABLE=NO
-→ REUSABLE=YES
+### Test #8 artifacts
 
-without rewriting previous lifecycle decisions or historical consumers, provided the asset record exposes the current recommendation and each lifecycle change is recorded durably.
-
-No richer lifecycle vocabulary was required.
-
-## 7. Relevant Test #6 artifacts
-
-Asset:
 - assets/characters/helga/HELGA-CROUCH-CANDIDATE-03.md
+- assets/characters/helga/HELGA-CROUCH-CANDIDATE-04.md
+- correspondence/requests/test_project_h/TESTH-P001-HELGA-REPLACEMENT-001.md
+- projects/test_project_h/panels/001/PANEL_STATE.md
+- projects/test_project_h/panels/001/decisions/HELGA_INITIAL_ASSET_DECISION.md
+- projects/test_project_h/panels/001/decisions/HELGA_ASSET_REPLACEMENT_DECISION.md
+- projects/test_project_h/panels/001/decisions/HELGA_CURRENT_ASSET_DECISION.md
+- correspondence/handoffs/cross-project/HELGA_CROUCH_REPLACEMENT_TEST8_HANDOFF_2026-10-04.md
 
-Earlier lifecycle decision:
-- assets/characters/helga/HELGA-CROUCH-CANDIDATE-03_LIFECYCLE_DECISION.md
+## 10. Current open questions
 
-Reversal lifecycle decision:
-- assets/characters/helga/HELGA-CROUCH-CANDIDATE-03_LIFECYCLE_REVERSAL_DECISION.md
+- lifecycle governance / authority;
+- discoverability at much larger consumer counts;
+- chronology of many lifecycle changes;
+- many sequential replacements / supersessions;
+- physical binary assets;
+- reconstruction by a new sister from repository alone;
+- whether any global supersession concept is ever justified.
 
-Historical consumer:
-- projects/test_project_c/panels/001/decisions/HELGA_OLD_ASSET_DECISION.md
+## 11. Planned tests
 
-New consumer:
-- correspondence/requests/test_project_d/TESTD-P001-HELGA-REUSE-001.md
-- projects/test_project_d/panels/001/PANEL_STATE.md
-- projects/test_project_d/panels/001/decisions/HELGA_REUSE_ASSET_DECISION.md
-
-Focused lifecycle handoff:
-- correspondence/handoffs/cross-project/HELGA_CROUCH_REUSE_REVERSAL_HANDOFF_2026-10-03.md
-
-## 8. Next test
-
-NEXT MINIMAL EXPERIMENT: TEST 7 — MULTIPLE INDEPENDENT CONSUMERS.
-
-Question:
-Does repository search remain adequate when one asset has several independent consumers, including consumers from different lifecycle moments?
-
-Do not add a consumer registry or global index before the scenario demonstrates a concrete discoverability failure.
-
-## 9. Planned tests
-
-- Test 7: multiple independent consumers
-- Test 8: replacement / supersession
 - Test 9: physical binary asset
 - Test 10: reconstruction by a new sister
 - Test 11: architecture freeze candidate
 
 These are plans, not yet proven rules.
 
-## 10. Test discipline
+## 12. Test discipline
 
 For every new test:
 1. Start with the smallest real scenario.
@@ -189,45 +259,11 @@ For every new test:
 6. Do not infer authority from a handoff.
 7. Separate OBSERVED FACT, INFERENCE, HYPOTHESIS, and ACCEPTED ARCHITECTURE.
 8. Record unresolved questions instead of solving them speculatively.
-9. After the test, update this handoff, the architecture plan/checkpoints file, and the changes-after-tests file.
+9. Update this handoff, the architecture plan/checkpoints file, the changes-after-tests file, and the handoff index after the test.
 
-## 11. Durable memory rule
+## 13. Source discipline
 
-This file is itself a living architectural memory object.
-
-After EVERY:
-- architecture test,
-- conclusion derived from a test,
-- new architectural decision,
-- important new data supplied by the user,
-- important new architectural observation made during analysis,
-
-update this file.
-
-Do not wait for a new test if the new information materially changes what the next sister needs to know.
-
-The handoff must describe CURRENT knowledge, while preserving historical test results and unresolved questions.
-
-## 12. Source discipline
-
-Do not claim:
-- that a file was inspected if it was not inspected;
-- that an image was visually checked if it was not;
-- that a rule is proven if it is only a hypothesis;
-- that a historical decision changed if the record was not changed.
-
-When uncertain, label the uncertainty.
-
-## 13. Current repository role
-
-This repository is the durable memory of the architecture experiment.
-Production repositories are not the place for architecture experiments.
-
-The next sister should read this file first, then:
-1. ARCHITECTURE_PLAN_AND_CHECKPOINTS.md
-2. ARCHITECTURE_CHANGES_AFTER_TESTS.md
-3. relevant test artifacts and handoffs
-4. only then begin the next test
+Do not claim a file was inspected if it was not inspected. Do not claim an image was visually checked if it was not. Do not call a hypothesis proven. Do not claim a historical decision changed unless the record was changed.
 
 ## 14. Current status at handoff
 
@@ -238,171 +274,11 @@ Tests completed:
 - Test 4 — cross-project reuse
 - Test 5 — asset lifecycle / reuse revocation
 - Test 6 — asset lifecycle / reuse reversal
+- Test 7 — multiple independent consumers
+- Test 8 — replacement / supersession
 
 Current conclusion:
-The architecture has survived both stopping and restoring new reuse of the same asset without rewriting historical lifecycle decisions or historical consumers.
+The tested architecture can express a consumer-specific replacement from Asset A to Asset B while preserving the old consumer decision, both origins, current consumption, replacement reason, and character-canon boundary without adding a supersession registry or global lifecycle state.
 
 Immediate next action:
-Run TEST 7 — MULTIPLE INDEPENDENT CONSUMERS and update this handoff immediately afterward.
-
-
-## 13. Test #6 — REUSE REVERSAL — PASS (2026-10-03)
-
-Test #6 confirmed that the current model handles the lifecycle sequence:
-
-REUSABLE=YES → REUSABLE=NO → REUSABLE=YES
-
-without a new architectural entity.
-
-Observed:
-- the asset record now shows the current state REUSABLE=YES;
-- the previous lifecycle decision remains unchanged;
-- a separate reversal lifecycle decision records the new event;
-- TEST_PROJECT_C remains historically REJECTED_FOR_NEW_USE;
-- TEST_PROJECT_D successfully consumes the asset after restoration;
-- WITCH / Panel 017 and TEST_PROJECT_B / Panel 003 remain unchanged;
-- provenance and Helga character canon remain unchanged.
-
-Newly proven:
-- lifecycle changes can be represented as separate decisions while the asset record carries current state;
-- historical consumer decisions remain historically true after a later reversal;
-- a restored reusable asset can enter a new consumer chain without a new architecture entity.
-
-No richer lifecycle vocabulary, registry, automatic propagation, or governance system was needed.
-
-Still open:
-- authority/governance for lifecycle reversal;
-- readability/discoverability with many lifecycle changes;
-- discoverability with many consumers;
-- supersession;
-- physical binary assets;
-- reconstruction by a new sister from repository alone.
-
-## 14. Next test — Test #7
-
-NEXT MINIMAL EXPERIMENT: MULTIPLE INDEPENDENT CONSUMERS.
-
-Question:
-Does ordinary repository search remain sufficient when one asset has many independent consumers?
-
-Do not add a consumer registry in advance.
-Let the real search scenario determine whether discoverability actually breaks.
-
-The next sister should inspect the existing Test #6 artifacts and then run Test #7 from the smallest real scenario.
-
-## 15. Living-handoff maintenance
-
-The rule is reaffirmed: after every architecture test, test-derived conclusion, or materially important new architectural data from the user or assistant, update this file, even if the architecture itself does not change.
-
-## 16. Test #7 — MULTIPLE INDEPENDENT CONSUMERS — PARTIAL (2026-10-03)
-
-Test #7 added three independent consumers of the existing asset HELGA-CROUCH-CANDIDATE-03 without creating duplicate asset records:
-
-- TEST_PROJECT_E / Panel 002 — TESTE-P002-HELGA-REUSE-001
-- TEST_PROJECT_F / Panel 011 — TESTF-P011-HELGA-REUSE-001
-- TEST_PROJECT_G / Panel 004 — TESTG-P004-HELGA-REUSE-001
-
-The complete tested consumer set is now:
-
-1. WITCH / Panel 017 — accepted originating use
-2. TEST_PROJECT_B / Panel 003 — accepted consuming use
-3. TEST_PROJECT_C / Panel 001 — REJECTED_FOR_NEW_USE while REUSABLE=NO
-4. TEST_PROJECT_D / Panel 001 — accepted consuming use after REUSABLE=YES
-5. TEST_PROJECT_E / Panel 002 — accepted consuming use
-6. TEST_PROJECT_F / Panel 011 — accepted consuming use
-7. TEST_PROJECT_G / Panel 004 — accepted consuming use
-
-### OBSERVED FACTS
-
-Each new consumer has the normal local chain:
-
-request → panel state → decision → existing asset
-
-Each decision explicitly identifies HELGA-CROUCH-CANDIDATE-03 and points to the same asset record. No asset record was copied.
-
-The asset record's Related records plus the individual consumer records were sufficient to reconstruct the seven known scenarios.
-
-The GitHub connector search operation available during this test returned no matches even for broad repository terms (HELGA, Panel, REUSABLE, asset) and therefore could not serve as a reliable empirical full-repository search interface for this test. This is an observation about the search interface, not proof of a repository-model failure.
-
-### SEARCH TESTS
-
-Attempted repository search terms included:
-- HELGA-CROUCH-CANDIDATE-03
-- HELGA
-- Panel
-- REUSABLE
-- asset
-- TEST_PROJECT_B
-- TEST_PROJECT_C
-- TEST_PROJECT_D
-- WITCH Panel 017
-
-The search interface returned zero results in these attempts. The repository structure was therefore traversed through the asset record's explicit Related records and known consumer paths.
-
-### DISCOVERABILITY
-
-Easy:
-- asset → origin;
-- asset → lifecycle decisions;
-- asset → known consumer records already listed in the asset record;
-- consumer → decision → asset;
-- consumer decision → origin.
-
-Less easy:
-- discovering a consumer without already knowing the asset record or consumer path;
-- distinguishing a true consumer record from an incidental mention if relying only on broad text search;
-- using the available connector search as an exhaustive repository index, because it returned no results during the test.
-
-The test did not establish that repository data itself loses the consumer relationship.
-
-### INFERENCE
-
-For the tested seven-consumer structure, the durable records can represent independent consumers without a consumer registry or duplicate asset records.
-
-The strongest current reverse-navigation mechanism is the asset record's explicit Related records combined with consumer-local links back to the asset.
-
-### HYPOTHESES
-
-If the number of consumers grows substantially, manually maintained Related records may become harder to keep complete.
-
-A larger corpus may also make incidental mentions harder to distinguish from actual consumer decisions.
-
-Neither issue is proven as an architectural failure by Test #7.
-
-### ACCEPTED ARCHITECTURE AFTER TEST #7
-
-For the tested scale and structure:
-
-Repository records are sufficient to represent multiple independent consumers of one asset without a global consumer registry.
-
-However, exhaustive repository-search adequacy was not proven because the available search interface returned zero results for the tested terms. The durable record links themselves remained sufficient to reconstruct the known seven scenarios.
-
-This is not a universal claim that a registry will never be useful.
-
-### WHAT WE DID NOT NEED
-
-- consumer registry;
-- global asset registry;
-- usage table;
-- graph database;
-- automatic index;
-- API;
-- synchronization;
-- new asset records for each consumer;
-- richer lifecycle vocabulary.
-
-### WHAT REMAINS OPEN
-
-- replacement / supersession;
-- physical binary asset;
-- reconstruction by a new sister from repository alone;
-- whether manual Related-record maintenance remains reliable at much larger consumer counts;
-- governance/authority for lifecycle recommendations.
-
-### Test #7 focused handoff
-
-correspondence/handoffs/cross-project/HELGA_CROUCH_MULTIPLE_CONSUMERS_TEST7_HANDOFF_2026-10-03.md
-
-### Immediate next action
-
-Run TEST 8 — REPLACEMENT / SUPERSESSION.
+Run TEST 9 — PHYSICAL BINARY ASSET.
