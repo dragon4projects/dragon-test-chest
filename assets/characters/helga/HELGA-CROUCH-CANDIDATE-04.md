@@ -29,3 +29,16 @@ The replacement is a new asset identity. It does not rewrite HELGA-CROUCH-CANDID
 - Replacement decision: projects/test_project_h/panels/001/decisions/HELGA_ASSET_REPLACEMENT_DECISION.md
 - Current consumer decision: projects/test_project_h/panels/001/decisions/HELGA_CURRENT_ASSET_DECISION.md
 - Replaced asset: assets/characters/helga/HELGA-CROUCH-CANDIDATE-03.md
+
+## Physical binary
+
+The Test #9 physical representation is stored in the repository at:
+- Primary binary: assets/characters/helga/binary/HELGA-CROUCH-CANDIDATE-04.png
+
+The primary binary is a real 1×1 PNG test fixture stored in Git. It is deliberately small; its purpose is to test the record ↔ physical-file relationship, not to represent a production image.
+
+For the same test, two additional physical fixtures exist:
+- Copy with a different path: assets/characters/helga/binary/HELGA-CROUCH-CANDIDATE-04-copy.png
+- Modified binary fixture: assets/characters/helga/binary/HELGA-CROUCH-CANDIDATE-04-modified.png
+
+The primary and copy currently resolve to the same Git blob SHA, while the modified fixture resolves to a different Git blob SHA. These are Test #9 observations, not additional asset identities.
