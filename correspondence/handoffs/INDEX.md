@@ -76,3 +76,10 @@ These are deliberately real documents from the Cloud Library plus architecture-t
 - [HELGA sequential replacements — Test #13, 2026-10-07](cross-project/HELGA_SEQUENTIAL_REPLACEMENTS_TEST13_HANDOFF_2026-10-07.md)
   - Focused Test #13 handoff.
   - Records the A → B → C → D → E consumer-specific replacement chain, preserved history, current E state, provenance/lifecycle boundaries, reconstruction result, and bounded conclusion that no new abstraction was required.
+
+
+## TEST 14 / CROSS-PROJECT
+
+- [HELGA multiple consumers + sequential replacements — Test #14, 2026-10-07](cross-project/HELGA_MULTIPLE_CONSUMERS_SEQUENTIAL_REPLACEMENTS_TEST14_HANDOFF_2026-10-07.md)
+  - Focused Test #14 handoff.
+  - Records the shared Asset A, three independent replacement branches A→B→C, A→D and A→E→F, the Panel 004 A reuse probe, independent current states, provenance/lifecycle boundaries and bounded PASS conclusion.
