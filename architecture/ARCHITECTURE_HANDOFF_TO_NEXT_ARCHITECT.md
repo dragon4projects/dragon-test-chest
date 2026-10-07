@@ -390,3 +390,65 @@ This is a five-asset / four-replacement / one-consumer test only. It does not pr
 
 ### Reconstruction result
 A repository-first reconstruction starting from the Test #13 request and following its explicit links recovered the complete A → B → C → D → E chain and the current E state.
+
+
+## 2026-10-07 — Test #14 — Multiple Consumers + Sequential Replacements
+
+### Result
+**PASS — FOR TESTED SCOPE.**
+
+### Scenario
+One shared origin asset was used by three independent consumers:
+- TEST_PROJECT_J / Panel 001: A → B → C
+- TEST_PROJECT_J / Panel 002: A → D
+- TEST_PROJECT_J / Panel 003: A → E → F
+
+A fourth consumer probe, TEST_PROJECT_J / Panel 004, used A after the three replacement branches had completed.
+
+Asset IDs:
+- A = HELGA-MULTI-CONSUMER-ORIGIN-A
+- B = HELGA-MULTI-CONSUMER-B
+- C = HELGA-MULTI-CONSUMER-C
+- D = HELGA-MULTI-CONSUMER-D
+- E = HELGA-MULTI-CONSUMER-E
+- F = HELGA-MULTI-CONSUMER-F
+
+### Observed
+- Three independent current states coexist: Panel 001 → C, Panel 002 → D, Panel 003 → F.
+- Panel 001 changes did not change Panel 002 or Panel 003.
+- Panel 002 changes did not change Panel 001 or Panel 003.
+- Panel 003 changes did not change Panel 001 or Panel 002.
+- A retained its origin and remained REUSABLE=YES.
+- Panel 004 successfully used A after the other consumers had replaced A locally.
+- Historical decisions remained separate and intact.
+- B/C/D/E/F each retained their own asset records and provenance.
+- No global current asset, global supersession state, or automatic propagation was required.
+
+### Architecture result
+The existing model of asset records + consumer-local decisions + panel state + explicit links survived the intersection of multiple consumers and sequential replacements.
+
+No consumer registry, replacement registry, lineage/version mechanism, global current-asset registry, supersession registry, graph, database, synchronization layer, or new lifecycle status was justified for the tested scenario.
+
+### Reconstruction
+Starting from the Test #14 request and following explicit links to panel states, decisions and asset records reconstructed:
+- Panel 001: A → B → C
+- Panel 002: A → D
+- Panel 003: A → E → F
+- Panel 004: A
+
+The three tested current states were independently identified as C, D and F.
+
+### Boundary
+This does not prove:
+- arbitrary-scale consumers;
+- arbitrary-scale replacement chains;
+- exhaustive repository discovery;
+- global retirement/supersession semantics;
+- that a registry can never become necessary;
+- automatic propagation behavior beyond the explicitly unobserved absence in this scenario.
+
+### Focused artifact
+correspondence/handoffs/cross-project/HELGA_MULTIPLE_CONSUMERS_SEQUENTIAL_REPLACEMENTS_TEST14_HANDOFF_2026-10-07.md
+
+### Current status
+Tests #7 and #13 were combined only at the tested intersection. Test #14 does not invalidate either earlier result and does not convert their bounded conclusions into universal claims.
