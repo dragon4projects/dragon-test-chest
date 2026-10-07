@@ -998,3 +998,95 @@ MASTER_SHELL_v1
 Do not reopen CP_B–CP_H merely because a new model arrives.
 
 Reopen only if:
+- a newer authoritative file changes truth;
+- local implementation/proof exposes a concrete conflict;
+- owner explicitly changes the requirement;
+- source identity/geometry is proven inconsistent.
+
+---
+
+# 22. PRACTICAL NEXT ACTION FOR A SUCCESSOR ON 2026-10-07
+
+The previous verified state is waiting for local implementation evidence.
+
+Therefore the successor should first perform a **fresh tail scan**, not redesign the House.
+
+Search the Library for files created after the 2026-10-03 cursor, especially:
+
+```text
+Godot return / local receipt
+CP_H / post-CP_H proof execution
+S1-S7 / P1-P10
+Nika QA
+new Architect successor correspondence
+new Interior successor correspondence
+new Character Production correspondence
+new Dragon owner decisions
+```
+
+If no newer evidence exists, the honest state remains:
+
+```text
+candidate frozen and ready
+runtime proof not demonstrated
+waiting for local return / evidence
+```
+
+Do not manufacture work merely to make the project look active.
+
+---
+
+# 23. BUNDLED FILES IN THIS GITHUB HANDOFF
+
+This GitHub folder is a **portable continuity bundle**, not a full mirror of the Cloud Library.
+
+Included:
+
+```text
+dragon cave handoff full 07_10_2026.md
+DRAGON_HOUSE_ARCHITECT_SUCCESSOR_FULL_HANDOFF_2026-10-03.md
+137_DRAGON_HOUSE_CURRENT_CURSOR_2026-10-03.md
+CHARACTER_PRODUCTION_SUCCESSOR_HANDOFF_2026-10-03.md
+VESTOCHKA_INTERIOR_SUCCESSOR_TO_ARCHITECT_PHASE_C_TEST_LOAD_PACKAGE_READY_2026-10-03.md
+INTERIOR_PHASE_C_TEST_LOAD_PROXY_PACKAGE_v0_1.json
+ARTEFACT_NAMING_INDEX.md
+00_MASTER_PLAN_HYBRID_V0_2_ARCHITECT_SPEC.md
+131_CP_H_CLOSURE_HYBRID_PHYSICAL_CANDIDATE_001_REVB_v0_1.md
+VESTOCHKA_INTERIOR_SUCCESSOR_TO_ARCHITECT_CP_H_FREEZE_READINESS_PASS_2026-10-03.md
+DRAGON_HOUSE_PROJECT_BOUNDARY_CORRECTION_SAMA_NOT_DRAGON_HOUSE_2026-10-03.md
+01_MASTER_PLAN_HYBRID_V0_2.png
+02_RESIDENT_LIFE_AND_DRAGON_EMBODIMENT_V0_2.png
+03_CAMERA_PRIVACY_LINGER_V0_2.png
+04_MASTER_SECTION_V0_2.png
+```
+
+The larger/less portable raw Library corpus remains in Cloud Library. The handoff deliberately points to it rather than pretending this GitHub folder is a byte-for-byte mirror.
+
+---
+
+# 24. SUCCESSOR BEHAVIOUR CHECKLIST
+
+Before changing anything:
+
+```text
+[ ] Identify whether the task is persistent Dragon House or SAMA.
+[ ] Search current Library state.
+[ ] Read the exact authoritative file, not a summary, when identity matters.
+[ ] Separate candidate-stage state from runtime proof.
+[ ] Separate technical proxies from canon.
+[ ] Separate communication from authority.
+[ ] Preserve private-room boundaries.
+[ ] Preserve provenance and hashes when packaging.
+[ ] Never convert UNKNOWN into permission.
+[ ] Never claim a local agent received/read/applied a package without evidence.
+[ ] Never silently mutate a frozen candidate.
+[ ] If a new accepted decision changes durable truth, update the authoritative document.
+```
+
+The House is allowed to remain strange, inconvenient, scarred, private and a little bit ridiculous. Do not optimize the life out of it.
+
+---
+
+# END OF HANDOFF
+
+For navigation, start with this file, then the current cursor, then the CP_H records, then fresh Library correspondence.
