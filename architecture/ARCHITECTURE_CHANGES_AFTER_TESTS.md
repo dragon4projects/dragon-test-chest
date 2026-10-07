@@ -372,3 +372,59 @@ The test does not establish arbitrary-scale chronology, exhaustive discovery, gl
 
 ### Focused artifact
 correspondence/handoffs/cross-project/HELGA_SEQUENTIAL_REPLACEMENTS_TEST13_HANDOFF_2026-10-07.md
+
+
+## 2026-10-07 — Test #14 — Multiple Consumers + Sequential Replacements
+
+### Scenario
+TEST_PROJECT_J used one shared origin Asset A across:
+- Panel 001: A → B → C
+- Panel 002: A → D
+- Panel 003: A → E → F
+
+Panel 004 reused A after the three replacement branches completed.
+
+### Observed
+Three distinct current states coexisted:
+- Panel 001 → C
+- Panel 002 → D
+- Panel 003 → F
+
+Each replacement remained local to its consumer. Historical decisions remained intact. Asset A retained its origin and REUSABLE=YES. Panel 004 could still use A.
+
+### Architecture change earned
+**NO NEW ABSTRACTION REQUIRED.**
+
+The existing combination of asset records, panel state, consumer-local decisions, explicit links and handoff was sufficient for the tested intersection of multiple consumers and sequential replacements.
+
+### What was deliberately not added
+- consumer registry;
+- replacement registry;
+- supersession registry;
+- lineage/version mechanism;
+- global current asset;
+- graph/database/API;
+- synchronization;
+- automatic propagation;
+- new lifecycle status.
+
+### Bounded conclusion
+The test supports the rule that consumer-specific replacement can coexist across multiple consumers without becoming a global asset supersession state, for the tested scenario.
+
+It does not establish arbitrary-scale behavior, exhaustive discovery, global retirement semantics, or permanent non-necessity of registries.
+
+### Artifacts added
+- correspondence/requests/test_project_j/TESTJ-MULTIPLE-CONSUMERS-SEQUENTIAL-REPLACEMENTS-001.md
+- assets/characters/helga/HELGA-MULTI-CONSUMER-ORIGIN-A.md
+- assets/characters/helga/HELGA-MULTI-CONSUMER-B.md
+- assets/characters/helga/HELGA-MULTI-CONSUMER-C.md
+- assets/characters/helga/HELGA-MULTI-CONSUMER-D.md
+- assets/characters/helga/HELGA-MULTI-CONSUMER-E.md
+- assets/characters/helga/HELGA-MULTI-CONSUMER-F.md
+- projects/test_project_j/panels/001/PANEL_STATE.md
+- projects/test_project_j/panels/002/PANEL_STATE.md
+- projects/test_project_j/panels/003/PANEL_STATE.md
+- projects/test_project_j/panels/004/PANEL_STATE.md
+- consumer-local decision records under projects/test_project_j/panels/{001,002,003,004}/decisions/
+- correspondence/handoffs/cross-project/HELGA_MULTIPLE_CONSUMERS_SEQUENTIAL_REPLACEMENTS_TEST14_HANDOFF_2026-10-07.md
+- correspondence/handoffs/INDEX.md updated
