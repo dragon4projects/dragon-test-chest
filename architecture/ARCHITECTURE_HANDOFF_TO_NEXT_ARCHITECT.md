@@ -356,3 +356,37 @@ Tests completed:
 
 Immediate next action:
 No broad Test #13 is justified automatically. If further validation is desired, choose exactly one existing open boundary. The smallest remaining binary boundary is cross-repository/external-storage relocation; the smallest structural boundary is many sequential replacements.
+
+
+## 2026-10-07 — Test #13 — Many sequential replacements
+
+### Result
+**PASS — FOR TESTED SCOPE.**
+
+### Scenario
+A single consumer-context, TEST_PROJECT_I / Panel 001, was exercised through four sequential consumer-specific replacements:
+
+A → B → C → D → E
+
+using five separate asset records, one initial decision, four replacement decisions, one current decision, one panel state, and one request/task record.
+
+### Observed
+- All five asset records remain durable.
+- The initial decision remains historical.
+- Each replacement is a separate durable decision with explicit old/new asset IDs and a consumer-specific reason.
+- Panel state and current decision identify E as current.
+- The chain can be reconstructed from the request, panel state, decision records, asset records, and explicit old/new links.
+- All five assets retain their own provenance records.
+- REUSABLE remained YES for all five test assets.
+- No asset was marked globally REPLACED or SUPERSEDED.
+- No character canon was changed.
+- No other consumer context was changed.
+
+### Architecture result
+The existing record model survived the longer replacement chain without a new replacement registry, lineage entity, version field, graph, database, synchronization mechanism, or global supersession state.
+
+### Important boundary
+This is a five-asset / four-replacement / one-consumer test only. It does not prove arbitrary-scale chronology, exhaustive discovery, global retirement semantics, or that a longer or differently shaped replacement history can never create pressure for a new abstraction.
+
+### Reconstruction result
+A repository-first reconstruction starting from the Test #13 request and following its explicit links recovered the complete A → B → C → D → E chain and the current E state.
