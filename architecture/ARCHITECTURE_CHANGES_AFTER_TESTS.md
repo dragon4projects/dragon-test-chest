@@ -334,3 +334,41 @@ This does not establish semantics for modified binary content, multiple binaries
 No broad Test #13 is required. If further validation is desired, choose exactly one remaining open boundary:
 - MANY SEQUENTIAL REPLACEMENTS; or
 - CROSS-REPOSITORY / EXTERNAL-STORAGE RELOCATION.
+
+
+## 2026-10-07 — Test #13 — Many sequential replacements
+
+### Scenario
+TEST_PROJECT_I / Panel 001 was tested through four sequential consumer-specific replacements:
+
+A → B → C → D → E
+
+### Observed
+The existing model represented five asset records, one initial acceptance, four replacement decisions, and one current decision without rewriting historical decisions.
+
+Each replacement decision preserved:
+- old asset;
+- new asset;
+- consumer-specific reason;
+- consumer scope;
+- provenance boundary;
+- lifecycle separation.
+
+Panel state and current decision both identify E as current.
+
+### Architecture change earned
+No new architecture was required.
+
+The existing representation of asset records, request/task, panel state, separate decision records, explicit links, and handoff is sufficient for the tested many-sequential-replacement scenario.
+
+### Negative result
+No replacement registry, lineage entity, version field, supersession mechanism, graph, database, synchronization layer, or new lifecycle status was justified.
+
+### Reconstruction
+A repository-first reconstruction from the Test #13 request and its explicit links recovered A → B → C → D → E and current E.
+
+### Boundary
+The test does not establish arbitrary-scale chronology, exhaustive discovery, global supersession/retirement semantics, or behavior beyond the tested one-consumer chain.
+
+### Focused artifact
+correspondence/handoffs/cross-project/HELGA_SEQUENTIAL_REPLACEMENTS_TEST13_HANDOFF_2026-10-07.md
