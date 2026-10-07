@@ -69,3 +69,10 @@ These are deliberately real documents from the Cloud Library plus architecture-t
 - [HELGA crouch binary relocation — Test #12, 2026-10-04](cross-project/HELGA_CROUCH_BINARY_RELOCATION_TEST12_HANDOFF_2026-10-04.md)
   - Focused Test #12 handoff.
   - Records the same-content relocation, unchanged Git blob SHA, mutable file locator, unchanged Asset ID, and bounded conclusion that no new relocation entity/content-ID layer was required for this repository-local scenario.
+
+
+## TEST 13 / CROSS-PROJECT
+
+- [HELGA sequential replacements — Test #13, 2026-10-07](cross-project/HELGA_SEQUENTIAL_REPLACEMENTS_TEST13_HANDOFF_2026-10-07.md)
+  - Focused Test #13 handoff.
+  - Records the A → B → C → D → E consumer-specific replacement chain, preserved history, current E state, provenance/lifecycle boundaries, reconstruction result, and bounded conclusion that no new abstraction was required.
