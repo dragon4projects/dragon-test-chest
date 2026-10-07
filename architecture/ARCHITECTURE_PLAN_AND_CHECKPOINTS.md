@@ -260,3 +260,40 @@ Key result:
 
 Boundary:
 This proves only the tested five-asset/four-replacement scenario. Arbitrary-scale chronology and discovery remain open.
+
+
+## 2026-10-07 — Test #14 — Multiple consumers + sequential replacements
+
+### Scenario
+TEST_PROJECT_J used one shared origin Asset A across three independent consumer branches:
+- Panel 001: A → B → C
+- Panel 002: A → D
+- Panel 003: A → E → F
+
+Panel 004 additionally reused A after the other branches had changed.
+
+### Result
+**PASS — FOR TESTED SCOPE.**
+
+The existing model represented independent current states C, D and F simultaneously. Consumer-specific replacements did not propagate to other consumers, historical decisions remained intact, A retained its origin and REUSABLE=YES, and A remained usable by Panel 004.
+
+### Architecture change
+No new abstraction was required.
+
+The test did not justify:
+- consumer registry;
+- replacement registry;
+- supersession/lineage/version mechanism;
+- global current asset;
+- automatic propagation;
+- new lifecycle status;
+- graph/database/API/synchronization layer.
+
+### Reconstruction
+Repository-first reconstruction from the Test #14 request and explicit links recovered all three branches and the three current panel states.
+
+### Boundary
+This is a bounded one-origin / three-branch / one-additional-consumer probe. It does not prove arbitrary-scale consumers or replacement chains, exhaustive discovery, global retirement semantics, or that no future scenario can require additional structure.
+
+### Focused artifact
+correspondence/handoffs/cross-project/HELGA_MULTIPLE_CONSUMERS_SEQUENTIAL_REPLACEMENTS_TEST14_HANDOFF_2026-10-07.md
