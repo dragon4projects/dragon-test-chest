@@ -231,3 +231,32 @@ Smallest candidates now are:
 2. **CROSS-REPOSITORY / EXTERNAL-STORAGE RELOCATION** — test whether the current path + Git identity model still suffices when the binary crosses a repository/storage boundary.
 
 Do not combine scale, governance, discovery, storage and replacement in one experiment.
+
+
+### TEST 13 — MANY SEQUENTIAL REPLACEMENTS
+**Checkpoint:** PASS — FOR TESTED SCOPE.
+
+Scenario:
+TEST_PROJECT_I / Panel 001 moved through:
+A → B → C → D → E
+
+Observed:
+- five durable asset records;
+- one historical initial decision;
+- four separate replacement decisions;
+- one current decision;
+- current panel state = E;
+- all replacement reasons retained;
+- all asset provenance retained;
+- consumer-specific scope retained;
+- REUSABLE remained YES;
+- no global REPLACED/SUPERSEDED state was introduced.
+
+Reconstruction:
+The chain was recoverable repository-first from the request, panel state, asset records and explicit decision links. No new abstraction was required.
+
+Key result:
+**Many sequential replacements within one consumer-context did not break the tested architecture.**
+
+Boundary:
+This proves only the tested five-asset/four-replacement scenario. Arbitrary-scale chronology and discovery remain open.
