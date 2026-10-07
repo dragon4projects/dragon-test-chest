@@ -1,0 +1,141 @@
+# DRAGON HOUSE — ARTEFACT NAMING INDEX v1
+
+**Date:** 2026-10-03  
+**Owner:** Shelest / Dragon House artefact line  
+**Status:** ACTIVE
+
+## 1. Naming convention
+
+All visual artefact assets use ASCII, uppercase, zero-padded IDs.
+
+```text
+MASTER_ARTEFACT_<NNN>_<TYPE>_<ROLE>.png
+ARTEFACT_<NNN>_<TYPE>_<SLUG>.png
+SOURCE_ARTEFACT_<NNN>_<TYPE>_<SLUG>[_ALT_<VARIANT>].png
+```
+
+Allowed type tokens currently used:
+
+```text
+CUBE
+POSTER
+CHARACTER_FRAME
+```
+
+Rules:
+- `MASTER_ARTEFACT_*` = reusable empty/template assets.
+- `ARTEFACT_*` = current displayed/working artefact image.
+- `SOURCE_ARTEFACT_*` = source or historical material kept in `/Dragon cave/исходники артефактов/`.
+- `_ALT` = alternate, non-primary variant.
+- `_HISTORICAL` = historical artefact/evidence; do not silently replace with a current canon image.
+- IDs are stable once assigned; later visual regeneration keeps the same artefact ID.
+
+## 2. Masters
+
+```text
+MASTER_ARTEFACT_000_CUBE_EMPTY.png
+MASTER_ARTEFACT_001_CUBE_TEMPLATE.png
+MASTER_ARTEFACT_002_POSTER_FRAME_EMPTY.png
+MASTER_ARTEFACT_003_CHARACTER_FRAME_EMPTY.png
+MASTER_ARTEFACT_004_CHARACTER_FRAME_TEMPLATE.png
+```
+
+## 3. Current artefact register
+
+```text
+ARTEFACT_001_CUBE_EVMOCHKA_BOW.png
+ARTEFACT_002_CUBE_DISCARDED_EQUIPMENT.png
+ARTEFACT_003_CUBE_ICONOCHKA_DUST.png
+ARTEFACT_004_CUBE_RED_STONE_RING.png
+ARTEFACT_005_CUBE_VERA_I_SHORT_PENCIL.png
+ARTEFACT_006_CUBE_LETTERS_BEFORE_SLEEP.png
+ARTEFACT_007_CUBE_LETTERS_BEFORE_SLEEP_HISTORICAL.png
+ARTEFACT_008_CUBE_HITRUSHKA_GENERATOR_BREAKER.png
+ARTEFACT_009_CUBE_FREE_SISTER_CHAIR.png
+ARTEFACT_010_CUBE_SILVER_DRAGON.png
+ARTEFACT_011_CUBE_STOLEN_ADAPTER_KUNICA.png
+ARTEFACT_012_CUBE_STOLEN_ADAPTER_KUNICA_ALT.png
+ARTEFACT_013_CUBE_MORA_ORIGINAL_THREE_GRAPHITE_SWEATERS.png
+ARTEFACT_014_CUBE_MORA_ORIGINAL_THREE_GRAPHITE_SWEATERS_ALT.png
+ARTEFACT_015_CUBE_BLACK_LACE.png
+ARTEFACT_016_POSTER_RUNA_V2_IDENTITY_BEFORE_BEAUTY.png
+ARTEFACT_017_POSTER_SHURSHUN_BOOKS_CAT.png
+ARTEFACT_018_POSTER_GENERATOR_PROP_SALE.png
+ARTEFACT_019_CUBE_SHELEST_LINGERIE.png
+```
+
+Reserved source-only ID:
+
+```text
+ARTEFACT_020_CUBE_DUST_AND_RUBIES_HISTORICAL
+```
+
+## 4. Shelest lingerie source set
+
+Primary selected source:
+
+```text
+SOURCE_ARTEFACT_019_CUBE_SHELEST_LINGERIE_BLACK_GOLD.png
+```
+
+Alternate preserved source:
+
+```text
+SOURCE_ARTEFACT_019_CUBE_SHELEST_LINGERIE_ALT_BURGUNDY.png
+```
+
+Displayed cube:
+
+```text
+ARTEFACT_019_CUBE_SHELEST_LINGERIE.png
+```
+
+Inscription:
+
+```text
+Шелест знает, что делает,
+и это слегка опасно
+```
+
+## 5. Source register
+
+```text
+SOURCE_ARTEFACT_003_CUBE_ICONOCHKA_DUST.png
+SOURCE_ARTEFACT_005_CUBE_VERA_I_SHORT_PENCIL.png
+SOURCE_ARTEFACT_006_CUBE_LETTERS_BEFORE_SLEEP.png
+SOURCE_ARTEFACT_009_CUBE_FREE_SISTER_CHAIR.png
+SOURCE_ARTEFACT_019_CUBE_SHELEST_LINGERIE_BLACK_GOLD.png
+SOURCE_ARTEFACT_019_CUBE_SHELEST_LINGERIE_ALT_BURGUNDY.png
+SOURCE_ARTEFACT_020_CUBE_DUST_AND_RUBIES_HISTORICAL.png
+```
+
+## 6. Legacy-name mapping
+
+```text
+MASTER_CUBE_EMPTY.png -> MASTER_ARTEFACT_000_CUBE_EMPTY.png
+MASTER_CUBE_TEMPLATE.png -> MASTER_ARTEFACT_001_CUBE_TEMPLATE.png
+MASTER_FRAME_POSTER_EMPTY.png -> MASTER_ARTEFACT_002_POSTER_FRAME_EMPTY.png
+MASTER_FRAME_CHARACTER_EMPTY.png -> MASTER_ARTEFACT_003_CHARACTER_FRAME_EMPTY.png
+MASTER_FRAME_CHARACTER_TEMPLATE.png -> MASTER_ARTEFACT_004_CHARACTER_FRAME_TEMPLATE.png
+
+Куб_Бантик_ЭВМочки.png -> ARTEFACT_001_CUBE_EVMOCHKA_BOW.png
+Куб_Выброшенная_экипировка.png -> ARTEFACT_002_CUBE_DISCARDED_EQUIPMENT.png
+Куб_Дуст_генератору_от_Иконочки.png -> ARTEFACT_003_CUBE_ICONOCHKA_DUST.png
+Куб_Кольцо_с_красным_камнем.png -> ARTEFACT_004_CUBE_RED_STONE_RING.png
+Куб_Короткий_карандаш_Веры_Первой.png -> ARTEFACT_005_CUBE_VERA_I_SHORT_PENCIL.png
+Куб_Письма_перед_сном.png -> ARTEFACT_006_CUBE_LETTERS_BEFORE_SLEEP.png
+Куб_Письма_перед_сном_исторический.png -> ARTEFACT_007_CUBE_LETTERS_BEFORE_SLEEP_HISTORICAL.png
+Куб_Размыкатель_генератора_Хитрушки.png -> ARTEFACT_008_CUBE_HITRUSHKA_GENERATOR_BREAKER.png
+Куб_Свободный_стул_сестры.png -> ARTEFACT_009_CUBE_FREE_SISTER_CHAIR.png
+Куб_Серебряный_дракон.png -> ARTEFACT_010_CUBE_SILVER_DRAGON.png
+Куб_Стыренный_переходник_Куница.png -> ARTEFACT_011_CUBE_STOLEN_ADAPTER_KUNICA.png
+Куб_Стыренный_переходник_вариант.png -> ARTEFACT_012_CUBE_STOLEN_ADAPTER_KUNICA_ALT.png
+Куб_Три_графитовых_свитера_Моры_Изначальной.png -> ARTEFACT_013_CUBE_MORA_ORIGINAL_THREE_GRAPHITE_SWEATERS.png
+Куб_Три_графитовых_свитера_Моры_Изначальной_вариант.png -> ARTEFACT_014_CUBE_MORA_ORIGINAL_THREE_GRAPHITE_SWEATERS_ALT.png
+Куб_Чёрное_кружево.png -> ARTEFACT_015_CUBE_BLACK_LACE.png
+POSTER_IDENTITY_BEFORE_BEAUTY_RUNA_V2.png -> ARTEFACT_016_POSTER_RUNA_V2_IDENTITY_BEFORE_BEAUTY.png
+Постер_Шуршун_не_оставляйте_книги_рядом_с_котом.png -> ARTEFACT_017_POSTER_SHURSHUN_BOOKS_CAT.png
+Картина_Распродажа_реквизита_Генератор.png -> ARTEFACT_018_POSTER_GENERATOR_PROP_SALE.png
+```
+
+— Shelest
